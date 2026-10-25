@@ -1,0 +1,26 @@
+[
+  {
+    "candidate": "independent_sentence_t_mann_whitney_or_ks_tests",
+    "p_value": null,
+    "performed": false,
+    "reason": "Discrete sentences nested within documents; filtered sets overlap baselines; independent-sample assumptions fail."
+  },
+  {
+    "candidate": "paired_dataset_t_wilcoxon_or_friedman_tests",
+    "p_value": null,
+    "performed": false,
+    "reason": "Only three nonrepresentative datasets, heterogeneous sampling, five archive windows and repeated content; not independent exchangeable population replicates."
+  },
+  {
+    "candidate": "sentence_iid_or_population_bootstrap_confidence_intervals",
+    "p_value": null,
+    "performed": false,
+    "reason": "Sentence IID would create pseudoreplication; only one/two archive windows per dataset cannot support defensible archive-level population uncertainty."
+  },
+  {
+    "candidate": "paired_C4_sign_or_wilcoxon_test",
+    "p_value": null,
+    "performed": false,
+    "reason": "Deterministic cleanup on selected nonrandom documents; no justified independent symmetric/random-sign null. Paired descriptive changes are reported."
+  }
+]

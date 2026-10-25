@@ -1,0 +1,4 @@
+dataset,retained_documents,changed_documents,characters_removed_by_c4,saved_quality_tokens,c4_quality_tokens,tokens_removed_by_c4,token_reduction_percentage_of_saved_quality,tokens_removed_by_document_selection,tokens_removed_combined_selection_and_c4,saved_quality_sentence_count,c4_sentence_count,sentence_count_change_from_saved_quality,sentence_mean_change_from_saved_quality,domain_count_unchanged,domain_entropy_unchanged
+1,47,47,14683,47439,45366,2073,4.369822298109151,625094,627167,1831,1796,-35,-0.6493275304426724,True,True
+2,53,53,15084,48861,46665,2196,4.49438202247191,626827,629023,2072,2043,-29,-0.7401540149337507,True,True
+3,41,41,15733,60923,58752,2171,3.5635146003972227,696343,698514,2631,2579,-52,-0.37491144523295716,True,True

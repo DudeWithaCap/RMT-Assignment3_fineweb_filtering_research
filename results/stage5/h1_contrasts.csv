@@ -1,0 +1,13 @@
+dataset,target,comparator,document_reduction_difference_pp,token_reduction_difference_pp,target_greater_document_reduction,target_greater_token_reduction,p_value
+1,quality,url,94.5,91.25693460395252,True,True,
+1,quality,language,16.0,21.12253227722654,True,True,
+1,dedup,url,2.0999999999999996,2.6589029831993374,True,True,
+1,dedup,language,-76.39999999999999,-67.47549934352664,False,False,
+2,quality,url,94.0,91.61476894661442,True,True,
+2,quality,language,16.299999999999997,20.339565006334283,True,True,
+2,dedup,url,0.10000000000000009,-0.7290347024070282,True,False,
+2,dedup,language,-77.60000000000001,-72.00423864268716,False,False,
+3,quality,url,95.4,91.23650078043912,True,True,
+3,quality,language,18.900000000000006,13.271690528823427,True,True,
+3,dedup,url,3.7,-0.5275557069774689,True,False,
+3,dedup,language,-72.8,-78.49236595859315,False,False,

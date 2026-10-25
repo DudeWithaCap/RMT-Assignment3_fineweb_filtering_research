@@ -1,0 +1,52 @@
+{
+  "baseline": "data/processed/baseline.jsonl",
+  "expected_documents": 1000,
+  "baseline_sha256": "2e62da0fb0971678e5524420723a5ce57692375970d84aeb091bf8e371e9948d",
+  "max_text_characters": 20000,
+  "assets_directory": "data/assets",
+  "url": {
+    "soft_word_threshold": 2,
+    "extra_domains": [],
+    "extra_urls": []
+  },
+  "language": {
+    "model_file": "lid.176.ftz",
+    "english_confidence_threshold": 0.65
+  },
+  "quality": {
+    "min_doc_words": 50,
+    "max_doc_words": 100000,
+    "min_avg_word_length": 3,
+    "max_avg_word_length": 10,
+    "max_symbol_word_ratio": 0.1,
+    "max_bullet_lines_ratio": 0.9,
+    "max_ellipsis_lines_ratio": 0.3,
+    "min_alpha_word_ratio": 0.8,
+    "min_stop_words": 2,
+    "stop_words": ["the", "be", "to", "of", "and", "that", "have", "with"],
+    "dup_line_frac": 0.3,
+    "dup_para_frac": 0.3,
+    "dup_line_char_frac": 0.2,
+    "dup_para_char_frac": 0.2,
+    "top_ngram_thresholds": {"2": 0.2, "3": 0.18, "4": 0.16},
+    "duplicate_ngram_thresholds": {"5": 0.15, "6": 0.14, "7": 0.13, "8": 0.12, "9": 0.11, "10": 0.1},
+    "c4_min_sentences": 5,
+    "c4_min_words_per_line": 3,
+    "c4_max_word_length": 1000,
+    "c4_remove_citations": true,
+    "c4_filter_lorem_ipsum": true,
+    "c4_filter_javascript": true,
+    "c4_filter_curly_bracket": true,
+    "c4_filter_policy": true,
+    "line_punct_threshold": 0.12,
+    "short_line_threshold": 0.67,
+    "short_line_length": 30,
+    "char_duplicates_ratio": 0.01,
+    "newline_word_ratio": 0.3
+  },
+  "dedup": {
+    "ngram_size": 5,
+    "similarity_threshold": 0.8,
+    "max_documents": 5000
+  }
+}

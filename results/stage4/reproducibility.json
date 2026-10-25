@@ -1,0 +1,26 @@
+{
+  "all_metric_files_byte_identical": true,
+  "compared_files": [
+    "dataset_1_comparison.csv",
+    "dataset_1_comparison.json",
+    "dataset_2_comparison.csv",
+    "dataset_2_comparison.json",
+    "dataset_3_comparison.csv",
+    "dataset_3_comparison.json",
+    "document_metrics.csv",
+    "domain_counts.csv",
+    "domain_counts.json",
+    "metrics.csv",
+    "metrics.json",
+    "quality_c4_metrics.csv",
+    "quality_c4_metrics.json",
+    "quality_transform_effects.csv",
+    "quality_transform_effects.json",
+    "sentence_histograms.csv",
+    "sentence_histograms.json",
+    "sentence_lengths.csv"
+  ],
+  "primary_combinations": 15,
+  "supplementary_combinations": 3,
+  "protected_files_unchanged": 184
+}

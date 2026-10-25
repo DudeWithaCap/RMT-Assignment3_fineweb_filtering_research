@@ -1,0 +1,10 @@
+{
+  "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+  "errors": 0,
+  "existing_tests": 47,
+  "failures": 0,
+  "new_stage5_tests": 16,
+  "observed_result": "OK",
+  "skipped": 0,
+  "tests_run": 63
+}

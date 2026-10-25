@@ -1,0 +1,43 @@
+{
+  "primary_conditions": 15,
+  "primary_metric_files_match_replay": true,
+  "protected_preexisting_files_unchanged": 184,
+  "report_sha256": "c719c180ed456635111ac181428e1c08a12a08dee789eb6bb00dc18101491e74",
+  "result_files_sha256": {
+    "combined_summary.csv": "fee03dc8fc45ec8dd47f78dfd729a20375344d077818bab4628b5c9e36848bed",
+    "combined_summary.json": "60a5d64a6209898c65664056f267e3c20e27725390246be5e572ca47e8778a87",
+    "dataset_1_comparison.csv": "48c81211ba3b78f46b6cc2f52883a2a130725b4a3393622bc25973fddd0820fd",
+    "dataset_1_comparison.json": "06a324f13651b662e8b8802cb2a6b443b7704418f7b3780a962924074dd68c72",
+    "dataset_2_comparison.csv": "22e8d2f78aaf5040f2f1a9e0a1ab86471c199832dc8450a7b4be2e09e296a514",
+    "dataset_2_comparison.json": "c9b0e12dae5906490fdeeef57ea7dbe7204609ae438ab1e105086c0e67291aa6",
+    "dataset_3_comparison.csv": "1c3a6a759fcfaafcd7e1e19ecba495f20c7d5bcdeacb4360e4ec233f059c6a86",
+    "dataset_3_comparison.json": "5b56ea6a4fea5b587f65e16edc39a00ece83657c0e3c273c04606dd3c0854d52",
+    "document_metrics.csv": "2e6b3cb24b7606f5f73c4a67feee3d7c4e410ddeb3c91acfb1d4d1ac5c1b2de4",
+    "domain_counts.csv": "c12e61770b16926f5ffc03fbac8b8bab88679f019d90a0f32f550d272b009328",
+    "domain_counts.json": "28201c07e210dbcaf23818ea3f037a512dbd0c04df37447ec9685d6751ebf43d",
+    "manifest.json": "79b5dc022078e6aea7888b9f6461fa576fdfc9d752ba5c0009ecbcf1b2990429",
+    "metrics.csv": "78022cde0381905126e4e857a0cf9ba694b7604803554d64cc4da8a4583b857a",
+    "metrics.json": "2e829f01e1a62c7dd097377ff726e8a0c50532250e7a12d6bb4c5504b639c059",
+    "preservation_manifest.json": "895966ddee47ca63ce9f8172e48e65fa850c06424981883201a3adda2b365f4d",
+    "quality_c4_metrics.csv": "776fe1b8a7cf88921d27e758c97a50a1d92257d84df588492315453d69f30760",
+    "quality_c4_metrics.json": "9ce983ceee46bf90f7b95860529e37bbde0b876b1d02c9d7227ec3d4797debd7",
+    "quality_transform_effects.csv": "9b9d3078f9c4b12da9f62b557ed60d7198c284941c57f9411c4aeb93525047cc",
+    "quality_transform_effects.json": "99fea2920659745199a25ec6f743b77d9c5fc2d0ff4caa93097c2e0368e9ddd7",
+    "reproducibility.json": "3dab5bad957fa6be0ff15a1fcdf95d4a71ace70157af84a5e0fe475a7d7b18be",
+    "sentence_histograms.csv": "687b311f31c5c89d9d612bbeaf5221c9d161319e2dc8f2b9e3fbc83ca5e34d73",
+    "sentence_histograms.json": "b0d92d8089a8e0066a1c9bc6b65a4d185edf353d4a15346eb7191cfb720797c1",
+    "sentence_lengths.csv": "2dc51e74147449b49c51a1b1ce463310d5d089010c8464f369050d6935b59248",
+    "test_results.json": "5209dc448792607e260801ea2bb97fbd7007c55d2a09e159720f77c2fbdd9351"
+  },
+  "stage4_code_sha256": {
+    "__init__.py": "310b036d2fd33feff92f0270f045315c3816bad1335a9e4715084cecb5ae35d8",
+    "collect.py": "b73c73e5e79b92e27938e968385f6ffa1b992943f27ab22266b94b08de9120f7",
+    "metrics.py": "01f1d215f072ae17fce6765e9f217fc9daf88c4b2cc20b834d1cc82c6c3169d3",
+    "preserve.py": "4b8610252627a43a1c4c9eb7e81b6ea6bb01c30239b782eb404589b783867c29",
+    "report.py": "8f21603b5ee817e70d5f058efcf84ce285f575bd741c96998aa2a0dde0f0124a",
+    "verify.py": "bf145a41ced252202b2bb279b41c3a910b836228e77380236854064714bad403"
+  },
+  "supplementary_c4_conditions": 3,
+  "tests_passed": 47,
+  "tests_run": 47
+}

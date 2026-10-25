@@ -1,0 +1,11 @@
+{
+  "recorded_utc": "2026-10-24T22:26:59.940157+00:00",
+  "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+  "tests_run": 32,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "observed_result": "OK",
+  "existing_tests": 25,
+  "new_stage35_tests": 7
+}

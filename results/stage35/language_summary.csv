@@ -1,0 +1,4 @@
+dataset,documents,english_predicted,non_english_predicted,unclassified,all_low_confidence,english_low_confidence,english_above_threshold,confidence_threshold
+1,1000,255,745,0,107,48,207,0.65
+2,1000,300,700,0,114,84,216,0.65
+3,1000,287,713,0,114,57,230,0.65

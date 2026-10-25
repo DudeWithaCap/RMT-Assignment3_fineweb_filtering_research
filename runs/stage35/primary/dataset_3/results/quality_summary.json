@@ -1,0 +1,138 @@
+{
+  "stage": "quality",
+  "status": "complete",
+  "baseline": "C:\\Users\\Kabiy\\OneDrive\\Рабочий стол\\fineweb-filtering-research\\data\\processed\\baseline_3.jsonl",
+  "started_utc": "2026-10-24T22:24:45.180922+00:00",
+  "config": {
+    "baseline": "C:\\Users\\Kabiy\\OneDrive\\Рабочий стол\\fineweb-filtering-research\\data\\processed\\baseline_3.jsonl",
+    "expected_documents": 1000,
+    "baseline_sha256": "b5fab3d714b371b35d1b1a5572484c555395a3795fb04cdfeec29c14749bdb7d",
+    "max_text_characters": 20000,
+    "assets_directory": "C:\\Users\\Kabiy\\OneDrive\\Рабочий стол\\fineweb-filtering-research\\data\\assets",
+    "url": {
+      "soft_word_threshold": 2,
+      "extra_domains": [],
+      "extra_urls": []
+    },
+    "language": {
+      "model_file": "lid.176.ftz",
+      "english_confidence_threshold": 0.65
+    },
+    "quality": {
+      "min_doc_words": 50,
+      "max_doc_words": 100000,
+      "min_avg_word_length": 3,
+      "max_avg_word_length": 10,
+      "max_symbol_word_ratio": 0.1,
+      "max_bullet_lines_ratio": 0.9,
+      "max_ellipsis_lines_ratio": 0.3,
+      "min_alpha_word_ratio": 0.8,
+      "min_stop_words": 2,
+      "stop_words": [
+        "the",
+        "be",
+        "to",
+        "of",
+        "and",
+        "that",
+        "have",
+        "with"
+      ],
+      "dup_line_frac": 0.3,
+      "dup_para_frac": 0.3,
+      "dup_line_char_frac": 0.2,
+      "dup_para_char_frac": 0.2,
+      "top_ngram_thresholds": {
+        "2": 0.2,
+        "3": 0.18,
+        "4": 0.16
+      },
+      "duplicate_ngram_thresholds": {
+        "5": 0.15,
+        "6": 0.14,
+        "7": 0.13,
+        "8": 0.12,
+        "9": 0.11,
+        "10": 0.1
+      },
+      "c4_min_sentences": 5,
+      "c4_min_words_per_line": 3,
+      "c4_max_word_length": 1000,
+      "c4_remove_citations": true,
+      "c4_filter_lorem_ipsum": true,
+      "c4_filter_javascript": true,
+      "c4_filter_curly_bracket": true,
+      "c4_filter_policy": true,
+      "line_punct_threshold": 0.12,
+      "short_line_threshold": 0.67,
+      "short_line_length": 30,
+      "char_duplicates_ratio": 0.01,
+      "newline_word_ratio": 0.3
+    },
+    "dedup": {
+      "ngram_size": 5,
+      "similarity_threshold": 0.8,
+      "max_documents": 5000
+    }
+  },
+  "datatrove_revision": "0f2c69f8249aa0c53ebcf10afa2394da506a953f",
+  "input_count": 1000,
+  "output_count": 41,
+  "baseline_sha256": "b5fab3d714b371b35d1b1a5572484c555395a3795fb04cdfeec29c14749bdb7d",
+  "baseline_sha256_after": "b5fab3d714b371b35d1b1a5572484c555395a3795fb04cdfeec29c14749bdb7d",
+  "removed_count": 959,
+  "removal_reasons": {
+    "quality_c4_curly_bracket": 3,
+    "quality_c4_lorem_ipsum": 2,
+    "quality_c4_too_few_sentences": 2,
+    "quality_char_dup_ratio": 29,
+    "quality_dup_line_char_frac": 15,
+    "quality_dup_line_frac": 140,
+    "quality_duplicated_10_ngrams": 2,
+    "quality_duplicated_5_ngrams": 47,
+    "quality_duplicated_6_ngrams": 9,
+    "quality_duplicated_7_ngrams": 2,
+    "quality_duplicated_8_ngrams": 2,
+    "quality_duplicated_9_ngrams": 2,
+    "quality_insufficient_stop_words": 148,
+    "quality_line_punct_ratio": 31,
+    "quality_long_words": 112,
+    "quality_non_alpha_words": 284,
+    "quality_short_doc": 45,
+    "quality_short_line_ratio": 9,
+    "quality_top_2_gram": 18,
+    "quality_top_3_gram": 10,
+    "quality_top_4_gram": 47
+  },
+  "input_ids_sha256": "9609239b3bd70c70d83e71593798f7e4c946a8948e0cc9498936fe4cc5b885c4",
+  "output_sha256": "312424f766a90bf9cffb0afe4747e47b6c37937c61aea89c054769fab575f744",
+  "decisions_sha256": "239a1f4a8065aa34bf925c5a513690cfb036371b43f501f039ca710e4e84f382",
+  "assets": {
+    "punkt_tab.zip": {
+      "url": "https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/tokenizers/punkt_tab.zip",
+      "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106",
+      "bytes": 4319076
+    }
+  },
+  "python_version": "3.13.7",
+  "dependencies": {
+    "fasttext-community": "0.11.8",
+    "numpy": "2.5.4",
+    "nltk": "3.9.2",
+    "tldextract": "5.3.0"
+  },
+  "implementation_sha256": {
+    "__init__.py": "e0cd316b8c0ccf547baa2182e4f594a935d2ea477cf222a753d3481505315cf0",
+    "dedup_filter.py": "5d5701c40d936978e88870ae1a9551d345192f81dca064bd575a2fb4c5e65880",
+    "filter_assets.py": "2b7212f2ca4a746ef5c0c3c7e8580fc8bcc0077077283ca0b38eacf26b173ba0",
+    "filter_text.py": "a7babf409e6d6840c9da2993cfb32f6ea0c0524a8ae243f10c16770e80f0e4d4",
+    "filter_tokenizer.py": "b204fbce9d5119690907a1f95bfd2d85affddf2b87be4cd5d2ef8a98d438c72f",
+    "language_filter.py": "10218eb0999e95b923a617408d9d6f9be1914258c1e8ccebb84f65d6bf9caa7a",
+    "prepare_dataset.py": "931acd2b4630e632e0259da5b32d5dbc45080384c26f581160dc793c5ca971df",
+    "quality_filter.py": "fc3ce41871d1a0164c884ecd1356e91f92926304be0608b4518aedbe6b501c3c",
+    "run_filters.py": "581a7bd5c694a30843f672aefc7e572872696a406703d2e22bcfac9c4dbe3223",
+    "url_filter.py": "7a1d7269a517820b1a1a926c9f6fcc35ef7bc32424e373c2e8467eb3d5480fc6"
+  },
+  "elapsed_seconds": 4.950597600000037,
+  "completed_utc": "2026-10-24T22:24:50.131518+00:00"
+}

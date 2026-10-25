@@ -1,0 +1,26 @@
+{
+  "figure_files_integrity_verified": 16,
+  "figures": 8,
+  "figures_visually_inspected": 8,
+  "implementation_sha256": {
+    "__init__.py": "4a807e1de81f1e391fc0d9c537c05b4d23283e19a076da52a2be200367468bf5",
+    "analyze.py": "e13f9d9ced8cdfccdcf3ad6a994c9a8315382015ffbc4e43ec52ccb7aacce19c",
+    "plots.py": "7b7953db6a6292c30fadd85046d85b810c5bda37124cb6f56fcdd3b4be1f5116",
+    "preserve.py": "2cb1ac0a96e388dcaad7421f3ca5dfaa9ec938a509a47bcc352935ec4a36fb50",
+    "report.py": "74d3d5680c983a61ccde887fc9199e993fd756e1992845a2a00f3ef0f37e7870",
+    "statistics.py": "b04858a23deee333dc0561b5509178905cfb81fc2cd160bcc895521fbaf693dc",
+    "verify.py": "d7394f2cd70ed2f969b651d48b718b2248a3db906bdce6d8f5d8e1177c9c12be"
+  },
+  "no_population_significance_claims": true,
+  "numeric_files_byte_identical": 21,
+  "png_svg_files_byte_identical": 16,
+  "prior_files_unchanged": 236,
+  "report_sha256": "6ef3e41f95e00b4e163a4bcc01e36f0500ea91f05f2300a37edc1a38bd20cc5c",
+  "tests_passed": 63,
+  "tests_run": 63,
+  "versions": {
+    "matplotlib": "3.10.7",
+    "numpy": "2.5.4",
+    "pillow": "13.0.0"
+  }
+}

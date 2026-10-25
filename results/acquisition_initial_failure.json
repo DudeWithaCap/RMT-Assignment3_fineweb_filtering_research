@@ -1,0 +1,39 @@
+{
+  "status": "failed",
+  "started_utc": "2026-10-24T21:43:10.907446+00:00",
+  "config": {
+    "crawl": "CC-MAIN-2025-30",
+    "dataset_size": 1000,
+    "max_text_characters": 20000,
+    "sampling_seed": 42,
+    "max_source_files": 3,
+    "max_download_bytes": 134217728,
+    "request_timeout_seconds": 60
+  },
+  "source": "Official Common Crawl WET (extracted plain text)",
+  "manifest_url": "https://data.commoncrawl.org/crawl-data/CC-MAIN-2025-30/wet.paths.gz",
+  "sampling_method": "Sort WET paths by SHA256(seed:path); take consecutive conversion records from each selected file until target; no random document sampling",
+  "limitations": [
+    "Prefix/cluster sample, not representative of Common Crawl or the web.",
+    "Common Crawl has already extracted text; cannot evaluate HTML extraction with this baseline.",
+    "UTF-8 decoding replaces invalid bytes; text truncated to configured characters.",
+    "Domain means lowercase hostname, including subdomains; not registrable domain."
+  ],
+  "python_version": "3.13.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "library_versions": {
+    "requests": "2.32.5",
+    "warcio": "1.7.5",
+    "urllib3": "2.8.0",
+    "six": "1.17.0",
+    "certifi": "2026.10.23",
+    "charset-normalizer": "3.5.2",
+    "idna": "3.20"
+  },
+  "files_accessed": [],
+  "error": "ProxyError: HTTPSConnectionPool(host='data.commoncrawl.org', port=443): Max retries exceeded with url: /crawl-data/CC-MAIN-2025-30/wet.paths.gz (Caused by ProxyError('Unable to connect to proxy', NewConnectionError(\"HTTPSConnection(host='127.0.0.1', port=9): Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение\")))",
+  "documents_written": 0,
+  "compressed_bytes_read": 0,
+  "records_seen": 0,
+  "skipped_records": {}
+}

@@ -1,0 +1,9 @@
+{
+  "crawl": "CC-MAIN-2025-30",
+  "dataset_size": 1000,
+  "max_text_characters": 20000,
+  "sampling_seed": 42,
+  "max_source_files": 3,
+  "max_download_bytes": 134217728,
+  "request_timeout_seconds": 60
+}

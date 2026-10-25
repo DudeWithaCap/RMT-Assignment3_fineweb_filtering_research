@@ -1,0 +1,14 @@
+{
+  "dataset_size": 1000,
+  "files_per_dataset": 2,
+  "candidate_records_per_file": 2500,
+  "sampling_seed": 42,
+  "max_text_characters": 20000,
+  "max_download_bytes": 134217728,
+  "max_candidate_cache_bytes": 134217728,
+  "request_timeout_seconds": 60,
+  "datasets": {
+    "2": {"crawl": "CC-MAIN-2025-18"},
+    "3": {"crawl": "CC-MAIN-2025-47"}
+  }
+}

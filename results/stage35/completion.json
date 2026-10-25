@@ -1,0 +1,88 @@
+{
+  "completed_utc": "2026-10-24T22:28:20.582446+00:00",
+  "legacy_files_unchanged": 76,
+  "tests_run": 32,
+  "tests_passed": 32,
+  "baselines": {
+    "1": {
+      "documents": 1000,
+      "sha256": "2e62da0fb0971678e5524420723a5ce57692375970d84aeb091bf8e371e9948d"
+    },
+    "2": {
+      "documents": 1000,
+      "sha256": "04cfe5fe48ba16c7a58c223a14fb39ad330663b2b96275436413476526f096d8"
+    },
+    "3": {
+      "documents": 1000,
+      "sha256": "b5fab3d714b371b35d1b1a5572484c555395a3795fb04cdfeec29c14749bdb7d"
+    }
+  },
+  "filter_replay": [
+    {
+      "dataset": 2,
+      "stage": "url",
+      "output_sha256": "bc5d77b8dd3795798199bcc237585d2bf100b84081bfd22b06945efcddad22bf",
+      "decisions_sha256": "3c7eef2338ebbf718434036af82c6ab498a6aa57a359abcbd8e8733f8d53e23f",
+      "second_run_matches": true
+    },
+    {
+      "dataset": 2,
+      "stage": "language",
+      "output_sha256": "88c983eeca0f49c3f6468f73326fac9e5d5e2c5b6a646e7e9b8d8bb5672f0fc5",
+      "decisions_sha256": "b63995c405ca87237173c1497adf5e87d2f8d191d7da8786ce876ae19ea08b25",
+      "second_run_matches": true
+    },
+    {
+      "dataset": 2,
+      "stage": "quality",
+      "output_sha256": "c7ec640d26344c5d1b2d5ab45d734fb753b12af79d3ec9b4956257f39fee30de",
+      "decisions_sha256": "6d6bf71e88fab67c9d6325836fcddffd118fed6d1bfe7337c4f9796c29bd851a",
+      "second_run_matches": true
+    },
+    {
+      "dataset": 2,
+      "stage": "dedup",
+      "output_sha256": "cb3833a1f4b06d010d9ed9abdf7027a972aafa0a44e12101d0629f3dc36ff015",
+      "decisions_sha256": "665efc3fcfecb3feed4db678a2ab512aa08179ad0a192153b768459588360d3d",
+      "second_run_matches": true
+    },
+    {
+      "dataset": 3,
+      "stage": "url",
+      "output_sha256": "fa26f9a454ae3a520f22f8a1e40a242594ad6aad18bc241ca7aed4d24d00f49d",
+      "decisions_sha256": "b949aff69427869a2b0cd565a4c99388b421c7f6211b25370ef5da81fd065107",
+      "second_run_matches": true
+    },
+    {
+      "dataset": 3,
+      "stage": "language",
+      "output_sha256": "90fbe635417c24d0c31e5040e541714fae17c4d0fdd1cf4cec396678aaa3e4e3",
+      "decisions_sha256": "ee070ce9457dc279c534315b1804b87faf0e834b87dab3056d0f6bad9f9cf2a6",
+      "second_run_matches": true
+    },
+    {
+      "dataset": 3,
+      "stage": "quality",
+      "output_sha256": "312424f766a90bf9cffb0afe4747e47b6c37937c61aea89c054769fab575f744",
+      "decisions_sha256": "239a1f4a8065aa34bf925c5a513690cfb036371b43f501f039ca710e4e84f382",
+      "second_run_matches": true
+    },
+    {
+      "dataset": 3,
+      "stage": "dedup",
+      "output_sha256": "9f5379dfd5853f45e3ed8337abbd1dd95dc8ebda31ec94de5f4c34c0123244aa",
+      "decisions_sha256": "b9948b966a4e7f48434ac82d6595a8764ce7d096ccfad08faefbc8ea0818c1e0",
+      "second_run_matches": true
+    }
+  ],
+  "stage35_code_sha256": {
+    "__init__.py": "f07a313b7a5100325b80c14aff2c10c74ccab439b9463d6a535c9432339992d6",
+    "common.py": "25a6d3b5782f2c557e7a26cdc583b91e62118ebc45cba4d240b704b4c4d763cc",
+    "prepare.py": "19c5e36b467a603fa0e8b3635f210978622ce17c42bc35dc5b6e2f5f0d31f3b2",
+    "preserve.py": "cd3b2994d8ea9be5a4b254634f3ee942e9448bb2cd2509abdd597b4d1a82612a",
+    "report.py": "f558b46634ea3f1cc913a52c20f01155b872af9d02ad320f1904fbde10a594e0",
+    "run.py": "569228787ac130e26f9ce1ae28e0de90441553d5ded2df425d282098cebaf8bd",
+    "summarize.py": "55264fd4e771d992ff65d34ffb15d0e290a82db01ebd60ea87c399f3ddc00b31"
+  },
+  "stage35_config_sha256": "c1e2c549c2963b981449f6bd5bcebd04410b1243f67e2dd4bebbb33cf58a88e4"
+}

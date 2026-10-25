@@ -1,0 +1,23 @@
+[
+  {
+    "baseline_documents": 1000,
+    "baseline_hostnames": 922,
+    "baseline_sentence_bearing_documents": 1000,
+    "dataset": 1,
+    "source_wet_windows": 1
+  },
+  {
+    "baseline_documents": 1000,
+    "baseline_hostnames": 980,
+    "baseline_sentence_bearing_documents": 1000,
+    "dataset": 2,
+    "source_wet_windows": 2
+  },
+  {
+    "baseline_documents": 1000,
+    "baseline_hostnames": 986,
+    "baseline_sentence_bearing_documents": 1000,
+    "dataset": 3,
+    "source_wet_windows": 2
+  }
+]

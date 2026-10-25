@@ -1,0 +1,32 @@
+{
+  "url_filterblacklists.tar.gz": {
+    "url": "https://raw.githubusercontent.com/huggingface/datatrove/0f2c69f8249aa0c53ebcf10afa2394da506a953f/src/datatrove/assets/url_filterblacklists.tar.gz",
+    "sha256": "9659dda640e167426f5e4dc0c380a11ec6e0e5d9e9b1b575de2d49a349d542a7",
+    "bytes": 17678810
+  },
+  "banned_words.txt": {
+    "url": "https://raw.githubusercontent.com/huggingface/datatrove/0f2c69f8249aa0c53ebcf10afa2394da506a953f/src/datatrove/assets/banned_words.txt",
+    "sha256": "7aae5109ccc4d8357167168fa3a91331fa2fafd8eb8cc9c38cc9147c2610fab0",
+    "bytes": 1732
+  },
+  "banned_subwords.txt": {
+    "url": "https://raw.githubusercontent.com/huggingface/datatrove/0f2c69f8249aa0c53ebcf10afa2394da506a953f/src/datatrove/assets/banned_subwords.txt",
+    "sha256": "4770445cd8d2b16495efde88bc4efc3a520bdc0f3137d14d85cd3d89b194a232",
+    "bytes": 1673
+  },
+  "soft_banned_words.txt": {
+    "url": "https://raw.githubusercontent.com/huggingface/datatrove/0f2c69f8249aa0c53ebcf10afa2394da506a953f/src/datatrove/assets/soft_banned_words.txt",
+    "sha256": "e5043030accca33b0e368a693997576beea4c58279da641bff40b4e02281b063",
+    "bytes": 674
+  },
+  "lid.176.ftz": {
+    "url": "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz",
+    "sha256": "8f3472cfe8738a7b6099e8e999c3cbfae0dcd15696aac7d7738a8039db603e83",
+    "bytes": 938013
+  },
+  "punkt_tab.zip": {
+    "url": "https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/tokenizers/punkt_tab.zip",
+    "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106",
+    "bytes": 4319076
+  }
+}

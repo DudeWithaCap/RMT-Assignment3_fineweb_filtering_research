@@ -1,0 +1,119 @@
+{
+  "stage": "dedup",
+  "status": "complete",
+  "baseline": "C:\\Users\\Kabiy\\OneDrive\\Рабочий стол\\fineweb-filtering-research\\data\\processed\\baseline_2.jsonl",
+  "started_utc": "2026-10-24T22:23:35.233113+00:00",
+  "config": {
+    "baseline": "C:\\Users\\Kabiy\\OneDrive\\Рабочий стол\\fineweb-filtering-research\\data\\processed\\baseline_2.jsonl",
+    "expected_documents": 1000,
+    "baseline_sha256": "04cfe5fe48ba16c7a58c223a14fb39ad330663b2b96275436413476526f096d8",
+    "max_text_characters": 20000,
+    "assets_directory": "C:\\Users\\Kabiy\\OneDrive\\Рабочий стол\\fineweb-filtering-research\\data\\assets",
+    "url": {
+      "soft_word_threshold": 2,
+      "extra_domains": [],
+      "extra_urls": []
+    },
+    "language": {
+      "model_file": "lid.176.ftz",
+      "english_confidence_threshold": 0.65
+    },
+    "quality": {
+      "min_doc_words": 50,
+      "max_doc_words": 100000,
+      "min_avg_word_length": 3,
+      "max_avg_word_length": 10,
+      "max_symbol_word_ratio": 0.1,
+      "max_bullet_lines_ratio": 0.9,
+      "max_ellipsis_lines_ratio": 0.3,
+      "min_alpha_word_ratio": 0.8,
+      "min_stop_words": 2,
+      "stop_words": [
+        "the",
+        "be",
+        "to",
+        "of",
+        "and",
+        "that",
+        "have",
+        "with"
+      ],
+      "dup_line_frac": 0.3,
+      "dup_para_frac": 0.3,
+      "dup_line_char_frac": 0.2,
+      "dup_para_char_frac": 0.2,
+      "top_ngram_thresholds": {
+        "2": 0.2,
+        "3": 0.18,
+        "4": 0.16
+      },
+      "duplicate_ngram_thresholds": {
+        "5": 0.15,
+        "6": 0.14,
+        "7": 0.13,
+        "8": 0.12,
+        "9": 0.11,
+        "10": 0.1
+      },
+      "c4_min_sentences": 5,
+      "c4_min_words_per_line": 3,
+      "c4_max_word_length": 1000,
+      "c4_remove_citations": true,
+      "c4_filter_lorem_ipsum": true,
+      "c4_filter_javascript": true,
+      "c4_filter_curly_bracket": true,
+      "c4_filter_policy": true,
+      "line_punct_threshold": 0.12,
+      "short_line_threshold": 0.67,
+      "short_line_length": 30,
+      "char_duplicates_ratio": 0.01,
+      "newline_word_ratio": 0.3
+    },
+    "dedup": {
+      "ngram_size": 5,
+      "similarity_threshold": 0.8,
+      "max_documents": 5000
+    }
+  },
+  "datatrove_revision": "0f2c69f8249aa0c53ebcf10afa2394da506a953f",
+  "input_count": 1000,
+  "output_count": 992,
+  "baseline_sha256": "04cfe5fe48ba16c7a58c223a14fb39ad330663b2b96275436413476526f096d8",
+  "baseline_sha256_after": "04cfe5fe48ba16c7a58c223a14fb39ad330663b2b96275436413476526f096d8",
+  "removed_count": 8,
+  "removal_reasons": {
+    "dedup_ngram_jaccard": 2,
+    "dedup_normalized_exact": 6
+  },
+  "input_ids_sha256": "2db41118f78055ae8e07e14c8682236390f9722bd571af6dc535c1b8923b1694",
+  "output_sha256": "cb3833a1f4b06d010d9ed9abdf7027a972aafa0a44e12101d0629f3dc36ff015",
+  "decisions_sha256": "665efc3fcfecb3feed4db678a2ab512aa08179ad0a192153b768459588360d3d",
+  "assets": {
+    "punkt_tab.zip": {
+      "url": "https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/tokenizers/punkt_tab.zip",
+      "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106",
+      "bytes": 4319076
+    }
+  },
+  "python_version": "3.13.7",
+  "dependencies": {
+    "fasttext-community": "0.11.8",
+    "numpy": "2.5.4",
+    "nltk": "3.9.2",
+    "tldextract": "5.3.0"
+  },
+  "implementation_sha256": {
+    "__init__.py": "e0cd316b8c0ccf547baa2182e4f594a935d2ea477cf222a753d3481505315cf0",
+    "dedup_filter.py": "5d5701c40d936978e88870ae1a9551d345192f81dca064bd575a2fb4c5e65880",
+    "filter_assets.py": "2b7212f2ca4a746ef5c0c3c7e8580fc8bcc0077077283ca0b38eacf26b173ba0",
+    "filter_text.py": "a7babf409e6d6840c9da2993cfb32f6ea0c0524a8ae243f10c16770e80f0e4d4",
+    "filter_tokenizer.py": "b204fbce9d5119690907a1f95bfd2d85affddf2b87be4cd5d2ef8a98d438c72f",
+    "language_filter.py": "10218eb0999e95b923a617408d9d6f9be1914258c1e8ccebb84f65d6bf9caa7a",
+    "prepare_dataset.py": "931acd2b4630e632e0259da5b32d5dbc45080384c26f581160dc793c5ca971df",
+    "quality_filter.py": "fc3ce41871d1a0164c884ecd1356e91f92926304be0608b4518aedbe6b501c3c",
+    "run_filters.py": "581a7bd5c694a30843f672aefc7e572872696a406703d2e22bcfac9c4dbe3223",
+    "url_filter.py": "7a1d7269a517820b1a1a926c9f6fcc35ef7bc32424e373c2e8467eb3d5480fc6"
+  },
+  "elapsed_seconds": 18.45213109999895,
+  "completed_utc": "2026-10-24T22:23:53.685244+00:00"
+}

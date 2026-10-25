@@ -1,0 +1,4 @@
+dataset,paired_documents,saved_tokens,cleaned_tokens,token_change,token_reduction_percentage_of_saved_quality,documents_tokens_decrease,documents_tokens_increase,documents_tokens_tie,paired_token_change_mean,paired_token_change_median,paired_document_mean_sentence_change_mean,pooled_sentence_mean_change_tokens,cdf_sup_distance,wasserstein1_tokens,domain_counts_unchanged,p_value
+1,47,47439,45366,-2073,4.369822298109151,46,0,1,-44.1063829787234,-29,-2.086391969640772,-0.6493275304426724,0.011408628191295622,0.7319755412538791,True,
+2,53,48861,46665,-2196,4.49438202247191,52,0,1,-41.43396226415094,-23,-4.788285142382004,-0.7401540149337507,0.008755057763868757,0.7539906961703984,True,
+3,41,60923,58752,-2171,3.5635146003972227,41,0,0,-52.951219512195124,-38,-1.9071839659607615,-0.37491144523295716,0.0076491275540879755,0.4722886029886116,True,

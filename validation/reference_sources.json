@@ -1,0 +1,12 @@
+{
+  "revision": "0f2c69f8249aa0c53ebcf10afa2394da506a953f",
+  "sha256": {
+    "gopher_repetition_filter.py": "39a96acc3bddc8073e2dd878629be31fce27f9027fc4824fcc2ff15d732d2afe",
+    "gopher_quality_filter.py": "21c5d2c42538a10f9781d41ef2b3e9198cc6f2e2ff2df26b963a948628171374",
+    "c4_filters.py": "5f582b0d4c58eb0a0074264f1859dc678d9ba5ba5e59d3bd835de6f088830bf2",
+    "fineweb_quality_filter.py": "303c80e57df84ac66c15cb1a73eadbaec3e24ccb375299fdcc7716f18a4db5b1",
+    "text.py": "e41f5fa4d8d6cdc21e656eef222949c0dce1b707376cbdfa2dadfd90906e830f",
+    "fineweb.py": "81de641caca9cfeac46efaffcebfa6e120849f1881c1314bb61b341b56818f64",
+    "language_filter.py": "32d7b731fd37f9820eef668e0e6e8bb16deb611e7350c6288a4677019cb28b74"
+  }
+}

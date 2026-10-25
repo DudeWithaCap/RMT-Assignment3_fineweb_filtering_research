@@ -1,0 +1,30 @@
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mplconfig/
+tmp/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Downloaded assets and web-text datasets remain local.
+data/assets/
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+runs/**/data/
+
+# Keep primary results; omit duplicate replays and assignment packaging.
+runs/stage35/replay/
+results/**/replay/
+results/**/review_replay/
+results/stage6/
+runs/reproduction/
+*.zip
+*.partial

@@ -1,0 +1,348 @@
+{
+  "language_summary": [
+    {
+      "dataset": 1,
+      "documents": 1000,
+      "english_predicted": 255,
+      "non_english_predicted": 745,
+      "unclassified": 0,
+      "all_low_confidence": 107,
+      "english_low_confidence": 48,
+      "english_above_threshold": 207,
+      "confidence_threshold": 0.65
+    },
+    {
+      "dataset": 2,
+      "documents": 1000,
+      "english_predicted": 300,
+      "non_english_predicted": 700,
+      "unclassified": 0,
+      "all_low_confidence": 114,
+      "english_low_confidence": 84,
+      "english_above_threshold": 216,
+      "confidence_threshold": 0.65
+    },
+    {
+      "dataset": 3,
+      "documents": 1000,
+      "english_predicted": 287,
+      "non_english_predicted": 713,
+      "unclassified": 0,
+      "all_low_confidence": 114,
+      "english_low_confidence": 57,
+      "english_above_threshold": 230,
+      "confidence_threshold": 0.65
+    }
+  ],
+  "filtering_results": [
+    {
+      "dataset": 1,
+      "filter": "url",
+      "input": 1000,
+      "retained": 992,
+      "removed": 8,
+      "removed_percentage": 0.8
+    },
+    {
+      "dataset": 1,
+      "filter": "language",
+      "input": 1000,
+      "retained": 207,
+      "removed": 793,
+      "removed_percentage": 79.3
+    },
+    {
+      "dataset": 1,
+      "filter": "quality",
+      "input": 1000,
+      "retained": 47,
+      "removed": 953,
+      "removed_percentage": 95.3
+    },
+    {
+      "dataset": 1,
+      "filter": "dedup",
+      "input": 1000,
+      "retained": 971,
+      "removed": 29,
+      "removed_percentage": 2.9
+    },
+    {
+      "dataset": 2,
+      "filter": "url",
+      "input": 1000,
+      "retained": 993,
+      "removed": 7,
+      "removed_percentage": 0.7
+    },
+    {
+      "dataset": 2,
+      "filter": "language",
+      "input": 1000,
+      "retained": 216,
+      "removed": 784,
+      "removed_percentage": 78.4
+    },
+    {
+      "dataset": 2,
+      "filter": "quality",
+      "input": 1000,
+      "retained": 53,
+      "removed": 947,
+      "removed_percentage": 94.7
+    },
+    {
+      "dataset": 2,
+      "filter": "dedup",
+      "input": 1000,
+      "retained": 992,
+      "removed": 8,
+      "removed_percentage": 0.8
+    },
+    {
+      "dataset": 3,
+      "filter": "url",
+      "input": 1000,
+      "retained": 995,
+      "removed": 5,
+      "removed_percentage": 0.5
+    },
+    {
+      "dataset": 3,
+      "filter": "language",
+      "input": 1000,
+      "retained": 230,
+      "removed": 770,
+      "removed_percentage": 77.0
+    },
+    {
+      "dataset": 3,
+      "filter": "quality",
+      "input": 1000,
+      "retained": 41,
+      "removed": 959,
+      "removed_percentage": 95.9
+    },
+    {
+      "dataset": 3,
+      "filter": "dedup",
+      "input": 1000,
+      "retained": 958,
+      "removed": 42,
+      "removed_percentage": 4.2
+    }
+  ],
+  "overlap": [
+    {
+      "dataset_a": 1,
+      "dataset_b": 2,
+      "metric": "document_id",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 2,
+      "metric": "warc_record_id",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 2,
+      "metric": "url",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 2,
+      "metric": "exact_capped_text",
+      "shared_unique_values": 2,
+      "matching_record_pairs": 5,
+      "matching_documents_a": 5,
+      "matching_documents_b": 2
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 2,
+      "metric": "normalized_capped_text",
+      "shared_unique_values": 2,
+      "matching_record_pairs": 5,
+      "matching_documents_a": 5,
+      "matching_documents_b": 2
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 3,
+      "metric": "document_id",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 3,
+      "metric": "warc_record_id",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 3,
+      "metric": "url",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 3,
+      "metric": "exact_capped_text",
+      "shared_unique_values": 1,
+      "matching_record_pairs": 6,
+      "matching_documents_a": 3,
+      "matching_documents_b": 2
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 3,
+      "metric": "normalized_capped_text",
+      "shared_unique_values": 1,
+      "matching_record_pairs": 6,
+      "matching_documents_a": 3,
+      "matching_documents_b": 2
+    },
+    {
+      "dataset_a": 2,
+      "dataset_b": 3,
+      "metric": "document_id",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 2,
+      "dataset_b": 3,
+      "metric": "warc_record_id",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 2,
+      "dataset_b": 3,
+      "metric": "url",
+      "shared_unique_values": 0,
+      "matching_record_pairs": 0,
+      "matching_documents_a": 0,
+      "matching_documents_b": 0
+    },
+    {
+      "dataset_a": 2,
+      "dataset_b": 3,
+      "metric": "exact_capped_text",
+      "shared_unique_values": 3,
+      "matching_record_pairs": 187,
+      "matching_documents_a": 7,
+      "matching_documents_b": 39
+    },
+    {
+      "dataset_a": 2,
+      "dataset_b": 3,
+      "metric": "normalized_capped_text",
+      "shared_unique_values": 3,
+      "matching_record_pairs": 187,
+      "matching_documents_a": 7,
+      "matching_documents_b": 39
+    }
+  ],
+  "baseline_sha256": {
+    "1": "2e62da0fb0971678e5524420723a5ce57692375970d84aeb091bf8e371e9948d",
+    "2": "04cfe5fe48ba16c7a58c223a14fb39ad330663b2b96275436413476526f096d8",
+    "3": "b5fab3d714b371b35d1b1a5572484c555395a3795fb04cdfeec29c14749bdb7d"
+  },
+  "legacy_files_unchanged": 76,
+  "exact_text_overlap_details": [
+    {
+      "dataset_a": 1,
+      "dataset_b": 2,
+      "text_sha256": "7a5924dfb6e4ec897b451d65370a1b38f4c9df9bb9c18c8c511bb3699a03b1b4",
+      "text_characters": 199,
+      "documents_a": 1,
+      "documents_b": 1,
+      "matching_record_pairs": 1
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 2,
+      "text_sha256": "f5adb7708969953eaf8f63d6359cf84eff22cce2b971d9c7a24fe84fc8da2c10",
+      "text_characters": 12,
+      "documents_a": 4,
+      "documents_b": 1,
+      "matching_record_pairs": 4
+    },
+    {
+      "dataset_a": 1,
+      "dataset_b": 3,
+      "text_sha256": "eaf0c157f82e0f9f7d1a989314b6d82898f263b72731badea08d9848660c365d",
+      "text_characters": 14,
+      "documents_a": 3,
+      "documents_b": 2,
+      "matching_record_pairs": 6
+    },
+    {
+      "dataset_a": 2,
+      "dataset_b": 3,
+      "text_sha256": "35343c59b5d316fae0ca233619e609d08ec02f87a40c1c1e1996137910f50257",
+      "text_characters": 81,
+      "documents_a": 5,
+      "documents_b": 37,
+      "matching_record_pairs": 185
+    },
+    {
+      "dataset_a": 2,
+      "dataset_b": 3,
+      "text_sha256": "b65c95eb27827f695f7326247e5633f8fa98c39a97eeee1368f5428d4ceb870d",
+      "text_characters": 106,
+      "documents_a": 1,
+      "documents_b": 1,
+      "matching_record_pairs": 1
+    },
+    {
+      "dataset_a": 2,
+      "dataset_b": 3,
+      "text_sha256": "bda76abb97cc6c2a48c55698945211582efab24a0e142268a184b59fc3dd1643",
+      "text_characters": 20000,
+      "documents_a": 1,
+      "documents_b": 1,
+      "matching_record_pairs": 1
+    }
+  ],
+  "sampling_replay": [
+    {
+      "dataset": 2,
+      "selection_replayed_from_cached_real_windows": true,
+      "sha256": "04cfe5fe48ba16c7a58c223a14fb39ad330663b2b96275436413476526f096d8"
+    },
+    {
+      "dataset": 3,
+      "selection_replayed_from_cached_real_windows": true,
+      "sha256": "b5fab3d714b371b35d1b1a5572484c555395a3795fb04cdfeec29c14749bdb7d"
+    }
+  ],
+  "language_predictions_match_stage_ledgers": true,
+  "same_thresholds_for_all_datasets": true
+}

@@ -1,0 +1,43 @@
+{
+  "baseline_sha256": "2e62da0fb0971678e5524420723a5ce57692375970d84aeb091bf8e371e9948d",
+  "baseline_unchanged": true,
+  "same_input_ids": true,
+  "output_rows_preserved": true,
+  "output_hashes_verified": true,
+  "automated_tests": {
+    "run": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "stages": [
+    {
+      "stage": "url",
+      "status": "complete",
+      "input_count": 1000,
+      "output_count": 992,
+      "removed_count": 8
+    },
+    {
+      "stage": "language",
+      "status": "complete",
+      "input_count": 1000,
+      "output_count": 207,
+      "removed_count": 793
+    },
+    {
+      "stage": "quality",
+      "status": "complete",
+      "input_count": 1000,
+      "output_count": 47,
+      "removed_count": 953
+    },
+    {
+      "stage": "dedup",
+      "status": "complete",
+      "input_count": 1000,
+      "output_count": 971,
+      "removed_count": 29
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+candidate,performed,p_value,reason
+independent_sentence_t_mann_whitney_or_ks_tests,False,,Discrete sentences nested within documents; filtered sets overlap baselines; independent-sample assumptions fail.
+paired_dataset_t_wilcoxon_or_friedman_tests,False,,"Only three nonrepresentative datasets, heterogeneous sampling, five archive windows and repeated content; not independent exchangeable population replicates."
+sentence_iid_or_population_bootstrap_confidence_intervals,False,,Sentence IID would create pseudoreplication; only one/two archive windows per dataset cannot support defensible archive-level population uncertainty.
+paired_C4_sign_or_wilcoxon_test,False,,Deterministic cleanup on selected nonrandom documents; no justified independent symmetric/random-sign null. Paired descriptive changes are reported.

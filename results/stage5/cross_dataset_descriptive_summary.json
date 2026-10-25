@@ -1,0 +1,242 @@
+[
+  {
+    "filter": "url",
+    "maximum": 0.8,
+    "mean": 0.6666666666666666,
+    "median": 0.7,
+    "metric": "document_reduction_percentage",
+    "minimum": 0.5,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "url",
+    "maximum": 1.6892851354506024,
+    "mean": 1.187197938775748,
+    "median": 1.1539349522264715,
+    "metric": "token_reduction_percentage",
+    "minimum": 0.7183737286501705,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "url",
+    "maximum": 0.0017525041669785857,
+    "mean": 0.0011081224166062757,
+    "median": 0.0010845992642624092,
+    "metric": "cdf_sup_distance",
+    "minimum": 0.0004872638185778322,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "url",
+    "maximum": 0.44202383124975975,
+    "mean": 0.22681514360879354,
+    "median": 0.12329761171073093,
+    "metric": "wasserstein1_tokens",
+    "minimum": 0.11512398786588994,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "url",
+    "maximum": 0.8676789587852483,
+    "mean": 0.6963546881838975,
+    "median": 0.7142857142857082,
+    "metric": "unique_domain_loss_percentage",
+    "minimum": 0.507099391480736,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "url",
+    "maximum": 0.013039902501159162,
+    "mean": 0.010276175400083668,
+    "median": 0.010416350950430697,
+    "metric": "entropy_loss_bits",
+    "minimum": 0.007372272748661146,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "language",
+    "maximum": 79.3,
+    "mean": 78.23333333333333,
+    "median": 78.4,
+    "metric": "document_reduction_percentage",
+    "minimum": 77.0,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "language",
+    "maximum": 78.68318398026585,
+    "mean": 74.312003444983,
+    "median": 72.4291388925066,
+    "metric": "token_reduction_percentage",
+    "minimum": 71.82368746217658,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "language",
+    "maximum": 0.08917487355184944,
+    "mean": 0.07748808119034306,
+    "median": 0.07829681031710764,
+    "metric": "cdf_sup_distance",
+    "minimum": 0.0649925597020721,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "language",
+    "maximum": 14.765662800768059,
+    "mean": 11.704781127719768,
+    "median": 10.340116003122988,
+    "metric": "wasserstein1_tokens",
+    "minimum": 10.008564579268254,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "language",
+    "maximum": 78.63340563991324,
+    "mean": 77.92478619093684,
+    "median": 78.16326530612244,
+    "metric": "unique_domain_loss_percentage",
+    "minimum": 76.97768762677485,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "language",
+    "maximum": 2.1894153010171387,
+    "mean": 2.1655576919633224,
+    "median": 2.1888765846333778,
+    "metric": "entropy_loss_bits",
+    "minimum": 2.118381190239451,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "quality",
+    "maximum": 95.9,
+    "mean": 95.3,
+    "median": 95.3,
+    "metric": "document_reduction_percentage",
+    "minimum": 94.7,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "quality",
+    "maximum": 92.94621973940312,
+    "mean": 92.55659938244442,
+    "median": 92.76870389884088,
+    "metric": "token_reduction_percentage",
+    "minimum": 91.95487450908928,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "quality",
+    "maximum": 0.11658491862821324,
+    "mean": 0.1083349768510848,
+    "median": 0.11593954874067841,
+    "metric": "cdf_sup_distance",
+    "minimum": 0.09248046318436275,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "quality",
+    "maximum": 23.736070212822277,
+    "mean": 18.61878549667112,
+    "median": 16.09897090314831,
+    "metric": "wasserstein1_tokens",
+    "minimum": 16.021315374042768,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "quality",
+    "maximum": 95.84178498985801,
+    "mean": 95.1120026138962,
+    "median": 94.90238611713666,
+    "metric": "unique_domain_loss_percentage",
+    "minimum": 94.59183673469389,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "quality",
+    "maximum": 4.580232280044003,
+    "mean": 4.336417481036677,
+    "median": 4.231156332967142,
+    "metric": "entropy_loss_bits",
+    "minimum": 4.197863830098888,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "dedup",
+    "maximum": 4.2,
+    "mean": 2.6333333333333333,
+    "median": 2.9,
+    "metric": "document_reduction_percentage",
+    "minimum": 0.8,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "dedup",
+    "maximum": 4.34818811864994,
+    "mean": 1.6546354633806948,
+    "median": 0.4249002498194433,
+    "metric": "token_reduction_percentage",
+    "minimum": 0.19081802167270154,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "dedup",
+    "maximum": 0.0037442823386790725,
+    "mean": 0.0020168782462406942,
+    "median": 0.0013254539659455777,
+    "metric": "cdf_sup_distance",
+    "minimum": 0.0009808984340974325,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "dedup",
+    "maximum": 0.6487060764289923,
+    "mean": 0.27539745092845097,
+    "median": 0.1116473811245274,
+    "metric": "wasserstein1_tokens",
+    "minimum": 0.06583889523183321,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "dedup",
+    "maximum": 3.8539553752535483,
+    "mean": 1.7779597439993278,
+    "median": 0.8676789587852483,
+    "metric": "unique_domain_loss_percentage",
+    "minimum": 0.6122448979591866,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  },
+  {
+    "filter": "dedup",
+    "maximum": 0.05477926564824642,
+    "mean": 0.01519657711918517,
+    "median": 0.007878296855858835,
+    "metric": "entropy_loss_bits",
+    "minimum": -0.01706783114654975,
+    "n": 3,
+    "scope": "three_heterogeneous_fixed_samples_equal_weight_not_population_estimate"
+  }
+]

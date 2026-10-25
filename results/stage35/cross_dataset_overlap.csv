@@ -1,0 +1,16 @@
+dataset_a,dataset_b,metric,shared_unique_values,matching_record_pairs,matching_documents_a,matching_documents_b
+1,2,document_id,0,0,0,0
+1,2,warc_record_id,0,0,0,0
+1,2,url,0,0,0,0
+1,2,exact_capped_text,2,5,5,2
+1,2,normalized_capped_text,2,5,5,2
+1,3,document_id,0,0,0,0
+1,3,warc_record_id,0,0,0,0
+1,3,url,0,0,0,0
+1,3,exact_capped_text,1,6,3,2
+1,3,normalized_capped_text,1,6,3,2
+2,3,document_id,0,0,0,0
+2,3,warc_record_id,0,0,0,0
+2,3,url,0,0,0,0
+2,3,exact_capped_text,3,187,7,39
+2,3,normalized_capped_text,3,187,7,39

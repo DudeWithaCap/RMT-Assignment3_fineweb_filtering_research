@@ -1,0 +1,41 @@
+{
+  "implementation_sha256": {
+    "__init__.py": "4a807e1de81f1e391fc0d9c537c05b4d23283e19a076da52a2be200367468bf5",
+    "analyze.py": "e13f9d9ced8cdfccdcf3ad6a994c9a8315382015ffbc4e43ec52ccb7aacce19c",
+    "plots.py": "3a17d3f30a12f907190e4e3dbeab12cd0934064b2eb5bd3f0feff44c09611f7f",
+    "preserve.py": "2cb1ac0a96e388dcaad7421f3ca5dfaa9ec938a509a47bcc352935ec4a36fb50",
+    "statistics.py": "b04858a23deee333dc0561b5509178905cfb81fc2cd160bcc895521fbaf693dc"
+  },
+  "inputs_sha256": {
+    "document_metrics.csv": "2e6b3cb24b7606f5f73c4a67feee3d7c4e410ddeb3c91acfb1d4d1ac5c1b2de4",
+    "domain_counts.csv": "c12e61770b16926f5ffc03fbac8b8bab88679f019d90a0f32f550d272b009328",
+    "metrics.json": "2e829f01e1a62c7dd097377ff726e8a0c50532250e7a12d6bb4c5504b639c059",
+    "quality_c4_metrics.json": "9ce983ceee46bf90f7b95860529e37bbde0b876b1d02c9d7227ec3d4797debd7",
+    "sentence_histograms.csv": "687b311f31c5c89d9d612bbeaf5221c9d161319e2dc8f2b9e3fbc83ca5e34d73"
+  },
+  "output_sha256": {
+    "analysis.json": "2c5cf388c786f0b4fdae235c51247cfecda11c09f999e0a290eb483d8d47bf8c",
+    "c4_paired_documents.csv": "6c6683ec98cb27e2db23c3f1a960d0c0310a553ccd08e447bc8b93aea1d2bd63",
+    "c4_paired_documents.json": "1a6a1e9968298e2766ef2dbb9859a5522a0deacfaaad7c18b11d0e167f67b941",
+    "c4_summary.csv": "7f9234380ea14176a65c76fb4130769a38cd0a96ecf63721c5e8102f8f5aba29",
+    "c4_summary.json": "904a3af341afa05d6f4c06bcb46edb91b0b82d76ee986f301ef7851d19ffb533",
+    "cross_dataset_descriptive_summary.csv": "4c22673b51b5f375a84ed659bcb08dd6f7d58f533b29d323b3d06930b6d2682a",
+    "cross_dataset_descriptive_summary.json": "7417b897097410c98e0abe260d43cd74944c33c34a9852cc243bb354caf928a9",
+    "domain_size_adjustment.csv": "da91d779c233ca57371b89477f4a88a07c664a5eb79acf16cd000831b718d36f",
+    "domain_size_adjustment.json": "34400182bfedc0f726056a090e57f68611cc5ad168865e8069da3a73600d159e",
+    "filter_contrasts.csv": "4fb28820cfd25a42c32a7b8d9638b123fcf6ba7944f697dc1c9ea3945331b4f2",
+    "filter_contrasts.json": "ced5f1c0f475733ccf748d0b94c4e651bc15f65876c096639acca63b6c8d26fd",
+    "h1_contrasts.csv": "fc1c6a8d7b8d94391f02e10d6a01acbdf187ec8726d12a35e5b955a26130e162",
+    "h1_contrasts.json": "04193bf3f2a718fc831064f104cd5dd52823c7f82df6ac27c34c45452038ed1c",
+    "hypothesis_assessments.csv": "0e1161d04fbec3abe469f4b517551ab2d18d8aaccff4643d1dd20ef986c263bf",
+    "hypothesis_assessments.json": "4a3ec163c5b1a08c33ea8e811c68e1089a33c3beaba3c847057d250712805af8",
+    "sampling_units.csv": "d54c165b933326ebf2adf6bd07ddacb221d8bb564da8f43d53399f047e5d4857",
+    "sampling_units.json": "412b37871a271f285ca9205494566f64869b35cdc62122e96907614937ccdded",
+    "sentence_effects.csv": "2dd680cf496209b7cc7225d01b609f7a56c428f59cbc9ffa3fd226ae21fd81c2",
+    "sentence_effects.json": "7b95c4b2fc684db3f491c4b1e9f6461536c3649657a09411ee9a72fb910ad688",
+    "statistical_test_decisions.csv": "313a693a98a7503b0dbaa2fb0e7422262531d9a77ad54772e9b46a5de212eb3f",
+    "statistical_test_decisions.json": "408cb5c433a30d2a634c885f39502ae7878d70d1302b43be0966c4ac0504b408"
+  },
+  "prior_files_unchanged": 236,
+  "statistical_scope": "fixed_sample_descriptive_no_population_p_values"
+}

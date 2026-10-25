@@ -1,0 +1,13 @@
+dataset,filter,input,retained,removed,removed_percentage
+1,url,1000,992,8,0.8
+1,language,1000,207,793,79.3
+1,quality,1000,47,953,95.3
+1,dedup,1000,971,29,2.9
+2,url,1000,993,7,0.7
+2,language,1000,216,784,78.4
+2,quality,1000,53,947,94.7
+2,dedup,1000,992,8,0.8
+3,url,1000,995,5,0.5
+3,language,1000,230,770,77.0
+3,quality,1000,41,959,95.9
+3,dedup,1000,958,42,4.2

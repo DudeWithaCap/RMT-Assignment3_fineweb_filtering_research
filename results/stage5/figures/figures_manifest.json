@@ -1,0 +1,50 @@
+[
+  {
+    "name": "document_reduction",
+    "caption": "Each bar is a separate observed dataset; no population error bars or sequential filtering.",
+    "png_sha256": "f5e03c534d25336f1a54fba0f1b689b971765b1e604de2afa70d7ee1072a9385",
+    "svg_sha256": "7549c2b8fccc58e06509782a94740ca9b43908a96f1fe8e644edd84454c92437"
+  },
+  {
+    "name": "token_reduction",
+    "caption": "Each bar is a separate observed dataset; no population error bars or sequential filtering.",
+    "png_sha256": "12ec1584bc22448946a737cf543df3365e04fc77d0b36edbe70e765167726533",
+    "svg_sha256": "63f7fdba5144d15e7b52856f2ef66e87982eb5c004e21eb79028ae59fb897c98"
+  },
+  {
+    "name": "sentence_ecdf",
+    "caption": "All lengths are included. Curves are descriptive; pooled sentences are not independent test observations.",
+    "png_sha256": "61158528ee01ddaf6edf2190931e3e1bc6d1c4645110c47eeb8f11a942d8979a",
+    "svg_sha256": "139fae72696ffcd9d0a766c504ee4d6ed87cc294639dd8779f48574eb93881d0"
+  },
+  {
+    "name": "sentence_location_spread",
+    "caption": "Central quantiles and means only; the full tails appear in the ECDF figure. No confidence intervals are shown.",
+    "png_sha256": "589dfd8e5c745682c660104d326141898642ccb36ce0d521a5ce19f5f87768b6",
+    "svg_sha256": "478d0a2f15edea7116a98b4ec787bff4d22c1bac964fb3fdc67fa62adb1392be"
+  },
+  {
+    "name": "domain_diversity",
+    "caption": "Raw hostname counts and document-weighted entropy; lower retained sample sizes constrain attainable richness and entropy.",
+    "png_sha256": "93192e6c2fea0843c718c86b9a923020824170b1ba75957d5689b5f8260af6fe",
+    "svg_sha256": "48d40c8a27cb54dcc159c92528a017f9910cffd285fbf932bcb5eb41435903da"
+  },
+  {
+    "name": "cross_dataset_comparison",
+    "caption": "Color scales differ by metric; values are observed effects, not significance scores.",
+    "png_sha256": "fa3c70163a0ba3b5b4210977d6cf41add13ad7cd4be64ed4b503b9d646076355",
+    "svg_sha256": "7c70eb394dac6d7ec432bc55582c826411382d73b2983a1655ce745ab727322a"
+  },
+  {
+    "name": "domain_size_adjusted",
+    "caption": "Benchmarks condition on the observed baseline and retained count. They are not population expectations, p-values, or confidence intervals.",
+    "png_sha256": "2d7c537c6a82f022f3297bc651daec235d47b4640547ca23c3a47b9306dd521b",
+    "svg_sha256": "19a55f4a8118ecb0d7147fb85f77cb438c1b3950928a5184cc04a9bd4b392b4c"
+  },
+  {
+    "name": "c4_transformation",
+    "caption": "Original quality outputs stay unchanged. Per-document token changes use paired IDs rather than independent samples.",
+    "png_sha256": "55bd4223db06324cbb63f3240a4025cb4b0df3e7f8c824c32fd4dfcdf1006a11",
+    "svg_sha256": "0977a74ff2f226d6b69315cb298b8f26c577c3ddbce963eef62f38ac37817029"
+  }
+]

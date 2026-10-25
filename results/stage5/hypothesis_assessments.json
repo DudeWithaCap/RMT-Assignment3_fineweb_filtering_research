@@ -1,0 +1,26 @@
+[
+  {
+    "contradicting_evidence": "Dedup reduces less volume than language in every sample, and less token volume than URL in Datasets 2 and 3. The full conjunction is not supported.",
+    "hypothesis": "H1",
+    "scope": "descriptive_within_studied_samples",
+    "statistical_conclusion": "The original significantly-higher claim is not established; no valid population test was performed.",
+    "status": "partially_supported",
+    "supporting_evidence": "Quality reduces both documents and tokens more than URL and language in all three samples; dedup removes more documents than URL in all three."
+  },
+  {
+    "contradicting_evidence": "Quality mean sentence lengths decrease in every sample. The longer-sentence claim depends on the location summary, not a uniform rightward shift.",
+    "hypothesis": "H2",
+    "scope": "descriptive_within_studied_samples",
+    "statistical_conclusion": "No distributional equivalence margin or valid inferential design; small dedup distances do not prove equality.",
+    "status": "partially_supported",
+    "supporting_evidence": "Quality medians rise and SD/IQR/CV decline in all three samples; dedup medians and quartiles are unchanged, with small observed CDF changes."
+  },
+  {
+    "contradicting_evidence": "Raw richness loss is confounded by retained size; quality survivors occupy distinct hostnames and do not lose richness beyond the same-size uniform-deletion expectation.",
+    "hypothesis": "H3",
+    "scope": "raw_diversity_loss_supported_disproportionate_claim_qualified",
+    "statistical_conclusion": "No low-resource/non-standard-domain labels were defined or validated, so that original mechanism is inconclusive; no population significance is claimed.",
+    "status": "partially_supported",
+    "supporting_evidence": "Language and quality have much greater raw hostname/entropy loss than dedup across all three samples."
+  }
+]

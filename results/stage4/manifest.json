@@ -1,0 +1,199 @@
+{
+  "filter_config_sha256": "2ec4d5b3b6c2664f6af3a6445388ef393cbe497e213708eca8baee07838484e7",
+  "implementation_sha256": {
+    "__init__.py": "310b036d2fd33feff92f0270f045315c3816bad1335a9e4715084cecb5ae35d8",
+    "collect.py": "b73c73e5e79b92e27938e968385f6ffa1b992943f27ab22266b94b08de9120f7",
+    "metrics.py": "01f1d215f072ae17fce6765e9f217fc9daf88c4b2cc20b834d1cc82c6c3169d3",
+    "preserve.py": "4b8610252627a43a1c4c9eb7e81b6ea6bb01c30239b782eb404589b783867c29"
+  },
+  "inputs": [
+    {
+      "condition": "baseline",
+      "dataset": 1,
+      "document_ids_sha256": "716791110c51888c5d48020741f5213c629660706aeb63e12b36de888c22d721",
+      "documents": 1000,
+      "input": "data\\processed\\baseline.jsonl",
+      "input_sha256": "2e62da0fb0971678e5524420723a5ce57692375970d84aeb091bf8e371e9948d"
+    },
+    {
+      "condition": "url",
+      "dataset": 1,
+      "document_ids_sha256": "a01915d8443697a0eb725070bcd906cbdcf9820be9a5f7572583136573bf4013",
+      "documents": 992,
+      "input": "data\\processed\\filtered_url.jsonl",
+      "input_sha256": "14e8d302621110a6ce1a004e2b39b3bbc603985c76cb695ec9d35b5228b93699"
+    },
+    {
+      "condition": "language",
+      "dataset": 1,
+      "document_ids_sha256": "3bc6be3f32ce8d40fbf122fa051449fddade388f317f7b84b9b4ac9e7c164e6b",
+      "documents": 207,
+      "input": "data\\processed\\filtered_language.jsonl",
+      "input_sha256": "2f4e3e50549719384011c096ea144eabcbfd70a9bb54198db95b060b98a45de9"
+    },
+    {
+      "condition": "quality",
+      "dataset": 1,
+      "document_ids_sha256": "64ee7b0212acf1e701ae47d7636a436c7fbdae019e74219e1ec6c03b8e4c587b",
+      "documents": 47,
+      "input": "data\\processed\\filtered_quality.jsonl",
+      "input_sha256": "400739454664ee75583bca47a54a93ffd93e6bbf7314c885e719038e3afceb28"
+    },
+    {
+      "condition": "dedup",
+      "dataset": 1,
+      "document_ids_sha256": "83bd9dbfddc49a3eb6f68c8b9024fbba41861b386aecec459ec0acb20db6c000",
+      "documents": 971,
+      "input": "data\\processed\\filtered_dedup.jsonl",
+      "input_sha256": "e303ffa57d4a886aaddb314b8f7a15d8dc0fdcc84a7113be0b6c59ae9e16e8d8"
+    },
+    {
+      "condition": "quality_c4_transformed",
+      "dataset": 1,
+      "document_ids_sha256": "64ee7b0212acf1e701ae47d7636a436c7fbdae019e74219e1ec6c03b8e4c587b",
+      "documents": 47,
+      "input": "data\\processed\\filtered_quality.jsonl",
+      "input_sha256": "400739454664ee75583bca47a54a93ffd93e6bbf7314c885e719038e3afceb28"
+    },
+    {
+      "condition": "baseline",
+      "dataset": 2,
+      "document_ids_sha256": "2db41118f78055ae8e07e14c8682236390f9722bd571af6dc535c1b8923b1694",
+      "documents": 1000,
+      "input": "data\\processed\\baseline_2.jsonl",
+      "input_sha256": "04cfe5fe48ba16c7a58c223a14fb39ad330663b2b96275436413476526f096d8"
+    },
+    {
+      "condition": "url",
+      "dataset": 2,
+      "document_ids_sha256": "84c31a6145e1d49e5c7c32b5bef1dd03c137d13212494d144faf1cd4a2420061",
+      "documents": 993,
+      "input": "runs\\stage35\\primary\\dataset_2\\data\\processed\\filtered_url.jsonl",
+      "input_sha256": "bc5d77b8dd3795798199bcc237585d2bf100b84081bfd22b06945efcddad22bf"
+    },
+    {
+      "condition": "language",
+      "dataset": 2,
+      "document_ids_sha256": "3ef08f3c520a3d78dcc7cf35bc3f27960ee605f313b5f8b2e5e938ba93acab72",
+      "documents": 216,
+      "input": "runs\\stage35\\primary\\dataset_2\\data\\processed\\filtered_language.jsonl",
+      "input_sha256": "88c983eeca0f49c3f6468f73326fac9e5d5e2c5b6a646e7e9b8d8bb5672f0fc5"
+    },
+    {
+      "condition": "quality",
+      "dataset": 2,
+      "document_ids_sha256": "ca4c2ab5968c203ba6133d5ead6cacd119d2182019f57c6c6cd2a13ed22dfc3d",
+      "documents": 53,
+      "input": "runs\\stage35\\primary\\dataset_2\\data\\processed\\filtered_quality.jsonl",
+      "input_sha256": "c7ec640d26344c5d1b2d5ab45d734fb753b12af79d3ec9b4956257f39fee30de"
+    },
+    {
+      "condition": "dedup",
+      "dataset": 2,
+      "document_ids_sha256": "0cf5a6659917965cb147a3f1df7c441759aeac91a322fb49710be730e8d68ae1",
+      "documents": 992,
+      "input": "runs\\stage35\\primary\\dataset_2\\data\\processed\\filtered_dedup.jsonl",
+      "input_sha256": "cb3833a1f4b06d010d9ed9abdf7027a972aafa0a44e12101d0629f3dc36ff015"
+    },
+    {
+      "condition": "quality_c4_transformed",
+      "dataset": 2,
+      "document_ids_sha256": "ca4c2ab5968c203ba6133d5ead6cacd119d2182019f57c6c6cd2a13ed22dfc3d",
+      "documents": 53,
+      "input": "runs\\stage35\\primary\\dataset_2\\data\\processed\\filtered_quality.jsonl",
+      "input_sha256": "c7ec640d26344c5d1b2d5ab45d734fb753b12af79d3ec9b4956257f39fee30de"
+    },
+    {
+      "condition": "baseline",
+      "dataset": 3,
+      "document_ids_sha256": "9609239b3bd70c70d83e71593798f7e4c946a8948e0cc9498936fe4cc5b885c4",
+      "documents": 1000,
+      "input": "data\\processed\\baseline_3.jsonl",
+      "input_sha256": "b5fab3d714b371b35d1b1a5572484c555395a3795fb04cdfeec29c14749bdb7d"
+    },
+    {
+      "condition": "url",
+      "dataset": 3,
+      "document_ids_sha256": "1edbbc47ce258a6599d61b1ed75977f3fbc7a7312d2df97e19ca9d84087dc2ab",
+      "documents": 995,
+      "input": "runs\\stage35\\primary\\dataset_3\\data\\processed\\filtered_url.jsonl",
+      "input_sha256": "fa26f9a454ae3a520f22f8a1e40a242594ad6aad18bc241ca7aed4d24d00f49d"
+    },
+    {
+      "condition": "language",
+      "dataset": 3,
+      "document_ids_sha256": "e93f16b0c8d94ec542c6246aade94ed13db9f2a4bc135e50f33db3499d0458cd",
+      "documents": 230,
+      "input": "runs\\stage35\\primary\\dataset_3\\data\\processed\\filtered_language.jsonl",
+      "input_sha256": "90fbe635417c24d0c31e5040e541714fae17c4d0fdd1cf4cec396678aaa3e4e3"
+    },
+    {
+      "condition": "quality",
+      "dataset": 3,
+      "document_ids_sha256": "407e933815a2827c4e12af93afadffa6b67510faea3985917a531dbd8adfe7e0",
+      "documents": 41,
+      "input": "runs\\stage35\\primary\\dataset_3\\data\\processed\\filtered_quality.jsonl",
+      "input_sha256": "312424f766a90bf9cffb0afe4747e47b6c37937c61aea89c054769fab575f744"
+    },
+    {
+      "condition": "dedup",
+      "dataset": 3,
+      "document_ids_sha256": "1bd55566aeec20903579b6396aee91174217b00036a7859e247e3904cebd0a53",
+      "documents": 958,
+      "input": "runs\\stage35\\primary\\dataset_3\\data\\processed\\filtered_dedup.jsonl",
+      "input_sha256": "9f5379dfd5853f45e3ed8337abbd1dd95dc8ebda31ec94de5f4c34c0123244aa"
+    },
+    {
+      "condition": "quality_c4_transformed",
+      "dataset": 3,
+      "document_ids_sha256": "407e933815a2827c4e12af93afadffa6b67510faea3985917a531dbd8adfe7e0",
+      "documents": 41,
+      "input": "runs\\stage35\\primary\\dataset_3\\data\\processed\\filtered_quality.jsonl",
+      "input_sha256": "312424f766a90bf9cffb0afe4747e47b6c37937c61aea89c054769fab575f744"
+    }
+  ],
+  "measurement": {
+    "c4_reference_sha256": "5f582b0d4c58eb0a0074264f1859dc678d9ba5ba5e59d3bd835de6f088830bf2",
+    "domain": "exact existing hostname field, one count per document",
+    "empty_sentence_statistics": null,
+    "entropy_log_base": 2,
+    "percentiles": "Hyndman-Fan type 7 linear interpolation",
+    "standard_deviation": "population, ddof=0",
+    "tokenizer_asset": {
+      "bytes": 4319076,
+      "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106",
+      "url": "https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/tokenizers/punkt_tab.zip"
+    },
+    "tokens": "English Punkt sentences then NLTKWordTokenizer; punctuation counted; no normalization",
+    "zero_denominator_percentage": null
+  },
+  "output_sha256": {
+    "dataset_1_comparison.csv": "48c81211ba3b78f46b6cc2f52883a2a130725b4a3393622bc25973fddd0820fd",
+    "dataset_1_comparison.json": "06a324f13651b662e8b8802cb2a6b443b7704418f7b3780a962924074dd68c72",
+    "dataset_2_comparison.csv": "22e8d2f78aaf5040f2f1a9e0a1ab86471c199832dc8450a7b4be2e09e296a514",
+    "dataset_2_comparison.json": "c9b0e12dae5906490fdeeef57ea7dbe7204609ae438ab1e105086c0e67291aa6",
+    "dataset_3_comparison.csv": "1c3a6a759fcfaafcd7e1e19ecba495f20c7d5bcdeacb4360e4ec233f059c6a86",
+    "dataset_3_comparison.json": "5b56ea6a4fea5b587f65e16edc39a00ece83657c0e3c273c04606dd3c0854d52",
+    "document_metrics.csv": "2e6b3cb24b7606f5f73c4a67feee3d7c4e410ddeb3c91acfb1d4d1ac5c1b2de4",
+    "domain_counts.csv": "c12e61770b16926f5ffc03fbac8b8bab88679f019d90a0f32f550d272b009328",
+    "domain_counts.json": "28201c07e210dbcaf23818ea3f037a512dbd0c04df37447ec9685d6751ebf43d",
+    "metrics.csv": "78022cde0381905126e4e857a0cf9ba694b7604803554d64cc4da8a4583b857a",
+    "metrics.json": "2e829f01e1a62c7dd097377ff726e8a0c50532250e7a12d6bb4c5504b639c059",
+    "preservation_manifest.json": "895966ddee47ca63ce9f8172e48e65fa850c06424981883201a3adda2b365f4d",
+    "quality_c4_metrics.csv": "776fe1b8a7cf88921d27e758c97a50a1d92257d84df588492315453d69f30760",
+    "quality_c4_metrics.json": "9ce983ceee46bf90f7b95860529e37bbde0b876b1d02c9d7227ec3d4797debd7",
+    "quality_transform_effects.csv": "9b9d3078f9c4b12da9f62b557ed60d7198c284941c57f9411c4aeb93525047cc",
+    "quality_transform_effects.json": "99fea2920659745199a25ec6f743b77d9c5fc2d0ff4caa93097c2e0368e9ddd7",
+    "sentence_histograms.csv": "687b311f31c5c89d9d612bbeaf5221c9d161319e2dc8f2b9e3fbc83ca5e34d73",
+    "sentence_histograms.json": "b0d92d8089a8e0066a1c9bc6b65a4d185edf353d4a15346eb7191cfb720797c1",
+    "sentence_lengths.csv": "2dc51e74147449b49c51a1b1ce463310d5d089010c8464f369050d6935b59248"
+  },
+  "primary_combinations": 15,
+  "protected_files_unchanged": 184,
+  "schema_version": 1,
+  "supplementary_combinations": 3,
+  "versions": {
+    "nltk": "3.9.2",
+    "python": "3.13.7"
+  }
+}

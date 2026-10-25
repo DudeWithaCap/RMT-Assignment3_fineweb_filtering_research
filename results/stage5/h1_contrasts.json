@@ -1,0 +1,122 @@
+[
+  {
+    "comparator": "url",
+    "dataset": 1,
+    "document_reduction_difference_pp": 94.5,
+    "p_value": null,
+    "target": "quality",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": true,
+    "token_reduction_difference_pp": 91.25693460395252
+  },
+  {
+    "comparator": "language",
+    "dataset": 1,
+    "document_reduction_difference_pp": 16.0,
+    "p_value": null,
+    "target": "quality",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": true,
+    "token_reduction_difference_pp": 21.12253227722654
+  },
+  {
+    "comparator": "url",
+    "dataset": 1,
+    "document_reduction_difference_pp": 2.0999999999999996,
+    "p_value": null,
+    "target": "dedup",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": true,
+    "token_reduction_difference_pp": 2.6589029831993374
+  },
+  {
+    "comparator": "language",
+    "dataset": 1,
+    "document_reduction_difference_pp": -76.39999999999999,
+    "p_value": null,
+    "target": "dedup",
+    "target_greater_document_reduction": false,
+    "target_greater_token_reduction": false,
+    "token_reduction_difference_pp": -67.47549934352664
+  },
+  {
+    "comparator": "url",
+    "dataset": 2,
+    "document_reduction_difference_pp": 94.0,
+    "p_value": null,
+    "target": "quality",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": true,
+    "token_reduction_difference_pp": 91.61476894661442
+  },
+  {
+    "comparator": "language",
+    "dataset": 2,
+    "document_reduction_difference_pp": 16.299999999999997,
+    "p_value": null,
+    "target": "quality",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": true,
+    "token_reduction_difference_pp": 20.339565006334283
+  },
+  {
+    "comparator": "url",
+    "dataset": 2,
+    "document_reduction_difference_pp": 0.10000000000000009,
+    "p_value": null,
+    "target": "dedup",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": false,
+    "token_reduction_difference_pp": -0.7290347024070282
+  },
+  {
+    "comparator": "language",
+    "dataset": 2,
+    "document_reduction_difference_pp": -77.60000000000001,
+    "p_value": null,
+    "target": "dedup",
+    "target_greater_document_reduction": false,
+    "target_greater_token_reduction": false,
+    "token_reduction_difference_pp": -72.00423864268716
+  },
+  {
+    "comparator": "url",
+    "dataset": 3,
+    "document_reduction_difference_pp": 95.4,
+    "p_value": null,
+    "target": "quality",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": true,
+    "token_reduction_difference_pp": 91.23650078043912
+  },
+  {
+    "comparator": "language",
+    "dataset": 3,
+    "document_reduction_difference_pp": 18.900000000000006,
+    "p_value": null,
+    "target": "quality",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": true,
+    "token_reduction_difference_pp": 13.271690528823427
+  },
+  {
+    "comparator": "url",
+    "dataset": 3,
+    "document_reduction_difference_pp": 3.7,
+    "p_value": null,
+    "target": "dedup",
+    "target_greater_document_reduction": true,
+    "target_greater_token_reduction": false,
+    "token_reduction_difference_pp": -0.5275557069774689
+  },
+  {
+    "comparator": "language",
+    "dataset": 3,
+    "document_reduction_difference_pp": -72.8,
+    "p_value": null,
+    "target": "dedup",
+    "target_greater_document_reduction": false,
+    "target_greater_token_reduction": false,
+    "token_reduction_difference_pp": -78.49236595859315
+  }
+]

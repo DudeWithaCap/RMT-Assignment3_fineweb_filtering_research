@@ -1,0 +1,126 @@
+{
+  "seed": "stage3-validation-v1",
+  "method": "10 lowest SHA256(seed:id) from each model-decision stratum, re-ranked for blinded display",
+  "sample": [
+    {
+      "document_id": "3a4337ea380020924c9d03737f8d3ef5c1678c46e38dbf92091099ac697dc34c",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "57f4a2286c726aaa2388195801de82c39aec0689026b244a8c12a5fd8ca094bd",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "2ccd71e57cc4c340476e85f50c6a23149a4ea4a80baa72e14a79533f5d8dfaeb",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "3f14b64a3338ed891c0f7b0bc8552532059ad4d93fcf1c22dcc9fe81ff4945f7",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "f9e5a0813926f40cec4828828a5330a72280519b69a85ca805c554e26f08fc6f",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "4ccf2b268d22964ca9aa8e9615eaeb603241fcb47092de99d0168503831d5f93",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "e9f1dc90f7ffc1ab1c75cbd73ddaa00d1b463f808c30062071bb94e97b3cf665",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "91fcabd8af8dd8b72fb146bf2ba818ce18affc84f38ab4b0252ba2b6d39e715c",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "e19ae6831f8ec03e767b023e6974a357914df3a365fe0067b71c0dc206550418",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "4eee3d30b470959dd2de7f0c029acd1cc03d0d99afa3682e4d0a3a9cb7d70540",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "7e8c43395154519ba241b50c32090231e81c70fb142158e49f42f4dd3a0065e6",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "4b8fc304aaab2f0b3c44855b10eef4e3274bf421f01e58555e18e14f188a5433",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "b9b95b29a9321362c6f56218484ae7705f11070d7005e001094b810934f7cbaa",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "b23d4f327ac517c1d86deb6a1344517c608bda6b32da7766c49ddd6405fc2ca3",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "c5e0339b01ff12b26fb939a6af02a0687ba784635e2642430318fae252e289d2",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "448bae9e76a99a2b21814f548ed7e7c2c635377d8f20d1053ac98690dc185966",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "be66874641a9d89da296e2fc9c6013edfe5b9b30307cdb8c2243a3edc436eae4",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "12c5399846678a0a18815d9aa5c5ae33976cb4c06a728d6f85ab96a3b4e73eb8",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "d6d806edf0848925c3c0fcbfa22983ffe8fc5ada92a61a95a829c827fb7bdc93",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "e339473a127ee70c647ca561b829c15020f35f4e0bda6f9303dd3386a7c2a2e2",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "f4d5b126940df0ba5885e4400c6ba7b94eaa7baa6e3473eb0c3d5b78f1b24c5b",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "339db7018739e49454fc33e8b46aa86db3f8ec12385822439f308a8c90c71560",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "e721dc4c6203fd1cdca60326403edcb7159bff84b5cff9f12fdd43edd7d738b2",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "3ef5df89f12d52ef6eebd90603b10aa4aacc95c39a6382c51ea178d02c424f7a",
+      "stratum": "low_confidence_english"
+    },
+    {
+      "document_id": "03a0fb0639287ac64a798cb1a8ae09e3cc483b22933275967d1772b9907bc8fa",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "4c70e67d3a8df5d7577cc41487e2b794e0f595177ada74065d957a1ccbbeaf7f",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "8345d9ddb5e11f4826815ed049240ad529861ff44fcbd5424da6593553c7f589",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "3e9a7d3088836e440e12da8af22647e0dfe0f479d9584ea28d0fe93584f438d8",
+      "stratum": "kept_english"
+    },
+    {
+      "document_id": "e4bbabe9d2179f403a3474b88edef23ba57d5bcc8d5b948cbea591f90760a34e",
+      "stratum": "predicted_non_english"
+    },
+    {
+      "document_id": "98d00d858a3557c21b2f1f1596cdce8d50e3feeda7fcebc265a62cf193e0aecc",
+      "stratum": "low_confidence_english"
+    }
+  ]
+}
