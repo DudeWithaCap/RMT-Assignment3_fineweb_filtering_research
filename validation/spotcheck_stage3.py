@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 
 from src.filter_assets import ROOT, sha256_file
+from src.result_paths import historical_path
 from src.filter_text import simplify_text
 from src.filter_tokenizer import EnglishTokenizer
 from src.language_filter import LanguageFilter
@@ -18,7 +19,7 @@ from .audit_stage3 import read_jsonl
 
 def spotcheck():
     config = load_config(ROOT / "filter_config.json")
-    output = ROOT / "results/validation"
+    output = historical_path("results/validation", ROOT)
     baseline = ROOT / config["baseline"]
     before = sha256_file(baseline)
     documents = {row["document_id"]: row for row in read_jsonl(baseline)}
@@ -26,7 +27,7 @@ def spotcheck():
     review = json.loads((ROOT / "validation/language_review.json").read_text(encoding="utf-8"))
     assert len(selection) == len(review["judgments"]) == 30
     assert before == review["baseline_sha256"], "Qualitative judgments belong to a different baseline"
-    saved = {row["document_id"]: row for row in read_jsonl(ROOT / "results/language_decisions.jsonl")}
+    saved = {row["document_id"]: row for row in read_jsonl(historical_path("results/language_decisions.jsonl", ROOT))}
     model = LanguageFilter(config["language"], ROOT / config["assets_directory"])
     enriched, mismatches, decision_disagreement, top_disagreement = [], [], [], []
     counts, per_stratum = Counter(), defaultdict(Counter)
@@ -65,7 +66,7 @@ def spotcheck():
         print(row["review_index"], row["label"], row["stratum"], row["predicted_language"], round(row["confidence"], 4), row["filter_kept"])
 
     tokenizer = EnglishTokenizer(ROOT / config["assets_directory"])
-    records = read_jsonl(ROOT / "results/dedup_removed.jsonl")
+    records = read_jsonl(historical_path("results/dedup_removed.jsonl", ROOT))
     dedup = {"removed_count": len(records), "match_types": dict(Counter(row["details"]["match_type"] for row in records)),
              "raw_exact_witness_pairs": 0, "normalized_exact_but_raw_different": 0, "witness_mismatches": [],
              "transitive_records": sum(row["details"].get("transitive_cluster", False) for row in records), "pairs": []}

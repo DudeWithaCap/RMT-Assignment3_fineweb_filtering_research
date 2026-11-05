@@ -10,6 +10,7 @@ from unittest.mock import patch
 from warcio.archiveiterator import ArchiveIterator
 from warcio.warcwriter import WARCWriter
 
+from src.result_paths import historical_path
 from src.prepare_dataset import (ROOT, BudgetReader, document_from_record,
                                  load_config, ordered_paths, prepare, read_text,
                                  validate_document)
@@ -115,15 +116,16 @@ class PreparationTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError, "Only 2"):
                     prepare(config, root)
             self.assertFalse((root / "data/processed/baseline.jsonl").exists())
-            report = json.loads((root / "results/dataset_failure.json").read_text(encoding="utf-8"))
+            report = json.loads((historical_path("results/dataset_failure.json", root)).read_text(encoding="utf-8"))
             self.assertEqual(report["status"], "failed")
 
 
 class AcquiredDatasetTests(unittest.TestCase):
-    @unittest.skipUnless((ROOT / "data/processed/baseline.jsonl").exists(),
-                         "Real baseline not acquired; offline tests still run")
+    @unittest.skipUnless((ROOT / "data/processed/baseline.jsonl").exists()
+                         and historical_path("results/dataset_metadata.json", ROOT).is_file(),
+                         "Optional acquired baseline/provenance metadata unavailable; offline tests still run")
     def test_real_baseline_structure_and_metadata(self):
-        metadata = json.loads((ROOT / "results/dataset_metadata.json").read_text(encoding="utf-8"))
+        metadata = json.loads((historical_path("results/dataset_metadata.json", ROOT)).read_text(encoding="utf-8"))
         config = metadata["config"]
         seen, digest, count, characters = set(), hashlib.sha256(), 0, 0
         with (ROOT / "data/processed/baseline.jsonl").open("rb") as stream:

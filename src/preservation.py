@@ -3,6 +3,7 @@
 from pathlib import PurePosixPath
 
 from .filter_assets import sha256_file
+from .result_paths import historical_path
 
 
 def is_editable_project_file(relative):
@@ -22,9 +23,9 @@ def verify_research_files(root, records):
     protected = {name: record for name, record in records.items() if not is_editable_project_file(name)}
     # Clones omit local datasets and caches; present files remain protected.
     protected = {name: record for name, record in protected.items()
-                 if (root / name).exists() or not is_local_artifact(name)}
+                 if historical_path(name, root).exists() or not is_local_artifact(name)}
     changed = [name for name, record in protected.items()
-               if not (root / name).is_file() or sha256_file(root / name) != record["sha256"]]
+               if not historical_path(name, root).is_file() or sha256_file(historical_path(name, root)) != record["sha256"]]
     if changed:
         raise RuntimeError(f"Research artifacts changed: {changed}")
     return len(protected)

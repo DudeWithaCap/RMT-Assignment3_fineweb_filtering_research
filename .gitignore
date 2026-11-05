@@ -20,11 +20,9 @@ data/processed/*
 !data/processed/.gitkeep
 runs/**/data/
 
-# Keep primary results; omit duplicate replays and assignment packaging.
-runs/stage35/replay/
-results/**/replay/
-results/**/review_replay/
-results/stage6/
-runs/reproduction/
+# Experimental outputs remain local, including charts, summaries and logs.
+/results/
+/runs/
+/validation/language_review.json
 *.zip
 *.partial

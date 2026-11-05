@@ -19,6 +19,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from warcio.archiveiterator import ArchiveIterator
+from .result_paths import historical_path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://data.commoncrawl.org/"
@@ -143,6 +144,7 @@ def write_json(path, value):
 
 def prepare(config, root=ROOT):
     raw, processed, results = (root / p for p in ("data/raw", "data/processed", "results"))
+    results = historical_path("results", root)
     for directory in (raw, processed, results):
         directory.mkdir(parents=True, exist_ok=True)
     output = processed / "baseline.jsonl"

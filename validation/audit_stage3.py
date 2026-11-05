@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 
 from src.filter_assets import DATATROVE_REVISION, ROOT, sha256_file
+from src.result_paths import historical_path
 from src.filter_text import PUNCTUATION_SET
 from src.filter_tokenizer import EnglishTokenizer
 from src.run_filters import STAGES, baseline_rows, load_config
@@ -59,7 +60,7 @@ def fetch_reference(directory):
 def audit(fetch=False, print_review=False):
     config = load_config(ROOT / "filter_config.json")
     baseline = ROOT / config["baseline"]
-    protected = [baseline, ROOT / "filter_config.json"] + [ROOT / f"results/{stage}_{suffix}" for stage in STAGES
+    protected = [baseline, ROOT / "filter_config.json"] + [historical_path(f"results/{stage}_{suffix}", ROOT) for stage in STAGES
                  for suffix in ("summary.json", "decisions.jsonl", "removed.jsonl")] + [
                      ROOT / f"data/processed/filtered_{stage}.jsonl" for stage in STAGES]
     before = {str(path.relative_to(ROOT)): sha256_file(path) for path in protected}
@@ -69,19 +70,19 @@ def audit(fetch=False, print_review=False):
     assert sha256_file(baseline) == config["baseline_sha256"]
     ledgers, summaries = {}, {}
     for stage in STAGES:
-        ledger = read_jsonl(ROOT / f"results/{stage}_decisions.jsonl")
-        summary = json.loads((ROOT / f"results/{stage}_summary.json").read_text(encoding="utf-8"))
+        ledger = read_jsonl(historical_path(f"results/{stage}_decisions.jsonl", ROOT))
+        summary = json.loads((historical_path(f"results/{stage}_summary.json", ROOT)).read_text(encoding="utf-8"))
         retained = read_jsonl(ROOT / f"data/processed/filtered_{stage}.jsonl")
         assert len(ledger) == len(rows)
         assert {r["document_id"] for r in ledger} == set(documents)
         assert summary["baseline_sha256"] == config["baseline_sha256"] == summary["baseline_sha256_after"]
         assert all(row == documents[row["document_id"]] for row in retained)
         assert sha256_file(ROOT / f"data/processed/filtered_{stage}.jsonl") == summary["output_sha256"]
-        assert sha256_file(ROOT / f"results/{stage}_decisions.jsonl") == summary["decisions_sha256"]
+        assert sha256_file(historical_path(f"results/{stage}_decisions.jsonl", ROOT)) == summary["decisions_sha256"]
         ledgers[stage] = ledger
         summaries[stage] = summary
     assert len({summary["input_ids_sha256"] for summary in summaries.values()}) == 1
-    output = ROOT / "results/validation"
+    output = historical_path("results/validation", ROOT)
     output.mkdir(parents=True, exist_ok=True)
     result = {"created_utc": datetime.now(timezone.utc).isoformat(), "baseline_sha256": config["baseline_sha256"],
               "filter_config_sha256": before["filter_config.json"], "input_count": len(rows),

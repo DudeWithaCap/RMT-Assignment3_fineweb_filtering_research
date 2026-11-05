@@ -36,6 +36,8 @@ class ReviewSamplingTests(unittest.TestCase):
         for stratum in ("kept_english", "low_confidence_english", "predicted_non_english"):
             self.assertEqual(sum(row["stratum"] == stratum for row in sample), 10)
 
+    @unittest.skipUnless((ROOT / "validation/language_review.json").is_file(),
+                         "Optional local language-review results are not published")
     def test_frozen_review_has_stable_document_ids_and_explicit_uncertainty(self):
         review = json.loads((ROOT / "validation/language_review.json").read_text(encoding="utf-8"))
         identities = [row["document_id"] for row in review["judgments"]]

@@ -211,23 +211,21 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--stage", choices=["all", *STAGES], default="all")
     parser.add_argument("--config", type=Path, default=ROOT / "filter_config.json")
-    parser.add_argument("--overwrite", action="store_true", help="Replace filter outputs only; baseline remains immutable")
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "results")
     args = parser.parse_args()
     try:
         config = load_config(args.config)
     except Exception as error:
         print(f"Invalid filter configuration: {error}", file=sys.stderr)
         return 1
-    failed = False
-    for stage in STAGES if args.stage == "all" else (args.stage,):
-        try:
-            run_stage(stage, config, overwrite=args.overwrite)
-        except (Exception, KeyboardInterrupt) as error:
-            print(f"{stage} failed: {error}", file=sys.stderr)
-            failed = True
-            if isinstance(error, KeyboardInterrupt):
-                break
-    return int(failed)
+    from .filter_datasets import run
+    try:
+        run((), STAGES if args.stage == "all" else (args.stage,), args.output_dir,
+            baseline=ROOT / config["baseline"], config_path=args.config)
+    except (Exception, KeyboardInterrupt) as error:
+        print(f"Filtering failed: {error}", file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":

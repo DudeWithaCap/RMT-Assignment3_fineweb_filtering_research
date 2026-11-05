@@ -1,75 +1,78 @@
-﻿# FineWeb Filtering Research
+# FineWeb Filtering Research
 
-A CPU-only Python project comparing four independent, FineWeb-inspired filters on three real Common Crawl samples (1,000 documents each).
+A CPU-only Python project comparing four independent FineWeb-inspired filters on real Common Crawl text: URL filtering, fastText English identification, heuristic quality checks and n-gram deduplication.
 
-Each filter reads the same original baseline: URL rules, fastText English identification, heuristic quality checks, or n-gram deduplication. Filters are **not sequential**. Measurements cover document/token reduction, sentence lengths, and domain diversity. Baselines are never overwritten.
+Each filter receives the same original baseline. The outputs are four separate cleaned datasets, preserving document IDs, text, URLs, domains and source metadata. The original baseline stays intact.
 
-## Structure and saved results
+## Results: one folder per dataset and run
 
-- `src/`: dataset preparation, filter implementations and runners.
-- `stage35/`: additional sampling and cross-dataset validation.
-- `stage4/`: metric collection; `stage5/`: descriptive analysis and figures.
-- `tests/`: automated correctness and reproducibility checks.
-- `data/`: local datasets, source caches and downloaded assets (Git-ignored).
-- `results/`: Dataset 1 filter logs, provenance, combined tables and figures.
-- `runs/stage35/primary/dataset_2/results/` and `dataset_3/results/`: Dataset 2 and 3 filter logs and summaries.
+Every filtering run creates a new folder using the **start date, dataset name and start time** in Asia/Qyzylorda (UTC+05:00). Repeating a run creates another folder, even within the same second.
 
-Start with [filtering results](results/stage35/filtering_results.csv), [combined metrics](results/stage4/combined_summary.csv), [hypothesis assessments](results/stage5/hypothesis_assessments.csv), and [figures](results/stage5/figures/).
+```text
+results/
+  2026-11-05_CC_2025_30_14-30-00/
+    retention.png           Chart: retained and removed document counts
+    retention.csv           The chart's numbers and percentages
+    summary.json            Status, input hash, timestamps and removal reasons
+    datasets/
+      url.json              Documents passing URL filtering
+      language.json         Documents passing language identification
+      quality.json          Documents passing quality filtering
+      dedup.json            Documents remaining after deduplication
+    details/                Filter configuration, original JSONL outputs and logs
+  archive/                  Previous results layout and historical analysis
+```
 
-| Dataset | Crawl | Baseline | URL kept | English kept | Quality kept | Dedup kept |
-| --- | --- | ---: | ---: | ---: | ---: | ---: |
-| 1 | CC-MAIN-2025-30 | 1,000 | 992 | 207 | 47 | 971 |
-| 2 | CC-MAIN-2025-18 | 1,000 | 993 | 216 | 53 | 992 |
-| 3 | CC-MAIN-2025-47 | 1,000 | 995 | 230 | 41 | 958 |
+Each exported `.json` is a regular JSON array of complete document objects. Empty filtered outputs are `[]`. No combined dataset passing all four filters is produced, because the research compares independent filtering conditions. Quality exports preserve the retained original text; C4 working-text cleanup remains a separate measurement.
 
-## Windows setup
+All charts, measurements, cleaned datasets and decision logs stay local under `results/`. The entire `results/` and legacy `runs/` folders are Git-ignored, together with the frozen language-review results. The repository contains code and documentation rather than experimental outputs.
 
-Use Python 3.13 (the tested version), then run PowerShell from the project root:
+These exports are labeled `reorganized_existing_results`; they do not claim a new experiment. Historical acquisition records, full metric tables and research figures use `results/archive/results/` and `results/archive/runs/`. Those optional archive files are separate from the dated filtering runs and must be restored if removed.
+
+## Setup and execution on Windows
+
+Use Python 3.13, then run PowerShell from the project root:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m src.filter_assets
+```
+
+Run all four filters on one existing baseline:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.filter_datasets --dataset 1
+```
+
+Use `--dataset 2`, `--dataset 3`, or `--dataset all`. To execute only one filter, add `--stage url`, `language`, `quality`, or `dedup`. The command prints the new results folder. Reuse the same command to create a separate dated run.
+
+For a different prepared dataset:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.filter_datasets --input data/processed/my_baseline.jsonl --dataset-name CC_2026_42
+```
+
+Custom inputs must use the existing baseline JSONL schema: unique `document_id`, `text`, `url`, `domain`, character counts, truncation flag and Common Crawl `source` metadata. The document count is detected automatically; text must already respect the 20,000-character limit. Deduplication's configured size limit still applies. A crawl-based name is inferred when `--dataset-name` is omitted and the source metadata identifies exactly one crawl.
+
+Unit tests use small temporary fixtures and do not create permanent experiment folders:
+
+```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Using the environment's executable directly avoids activation-policy problems. Tests do not download assets; tests requiring absent local datasets/models are skipped.
+## Code and inputs
 
-## Run filters
+- `src/prepare_dataset.py`: streaming acquisition for Dataset 1.
+- `src/datasets/`: additional dataset acquisition, sampling, configuration helpers and validation (`prepare.py`, `common.py`, `run.py`, `summarize.py`).
+- `src/filter_datasets.py`: dated-run entry point; `src/run_filters.py`: filter execution and decision logs.
+- `src/*_filter.py`: the four filter implementations; `src/run_results.py`: JSON exports and charts.
+- `src/metrics/`: document/token counts, sentence statistics and domain diversity (`collect.py`, `calculations.py`, `verify.py`).
+- `src/analysis/`: descriptive comparisons, hypothesis evidence and research figures (`analyze.py`, `statistics.py`, `plots.py`, `verify.py`).
+- `config.json`, `stage35_config.json`, `filter_config.json`: acquisition settings and filtering thresholds.
 
-Full filtering requires the original local files `data/processed/baseline.jsonl`, `baseline_2.jsonl`, and `baseline_3.jsonl`. Web-text datasets and models are deliberately excluded from Git; cloning the repository alone provides the saved results, not these inputs.
+The package moves replace the old `stage35/`, `stage4/` and `stage5/` source folders. The everyday command remains `python -m src.filter_datasets`. Additional module commands are `python -m src.datasets.prepare --help`, `python -m src.metrics.collect --help`, `python -m src.analysis.analyze --help` and `python -m src.analysis.plots --help`. Historical acquisition/metrics/analysis commands require their original manifests and inputs; if `results/archive/` is absent, restore those artifacts before running them. Optional evidence-dependent tests skip unavailable files. Old stage names inside saved provenance paths and `stage35_config.json` remain for compatibility; configurations and recorded results are not rewritten.
 
-```powershell
-.\.venv\Scripts\python.exe -m src.filter_assets
-.\.venv\Scripts\python.exe -m src.filter_datasets --dataset all --stage all
-```
+Existing baselines are `data/processed/baseline.jsonl`, `baseline_2.jsonl` and `baseline_3.jsonl`. Web-text datasets, models and all experimental results remain local and Git-ignored. Cloning provides the code and configuration; filtering additionally requires the baseline files and assets. Acquisition streams official Common Crawl WET data; synthetic research data is never substituted.
 
-New outputs go to `runs/reproduction/dataset_1/`, `dataset_2/`, and `dataset_3/`. Existing output directories are rejected. To run one condition or repeat safely:
-
-```powershell
-.\.venv\Scripts\python.exe -m src.filter_datasets --dataset 2 --stage quality --output-dir runs/reproduction/quality_check
-```
-
-Settings are in `config.json`, `stage35_config.json`, and `filter_config.json`; asset checksums are pinned in `filter_assets.lock.json`. Acquisition implementations are `src.prepare_dataset` and `stage35.prepare`. Reacquisition needs network access and can rewrite provenance records; use a separate working copy. No synthetic dataset is substituted.
-
-## Reproduce analysis and plots
-
-These commands use the committed metrics and write separate outputs:
-
-```powershell
-.\.venv\Scripts\python.exe -m stage5.analyze --output-dir results/stage5/review_replay
-.\.venv\Scripts\python.exe -m stage5.plots --analysis-dir results/stage5/review_replay --output-dir results/stage5/review_replay/figures
-```
-
-To remeasure the original experimental conditions, all original baseline and filtered JSONL files plus cached upstream validation sources must be available locally:
-
-```powershell
-.\.venv\Scripts\python.exe -m stage4.collect --output-dir results/stage4/review_replay
-```
-
-Stage 4 reads the original condition locations, not `runs/reproduction/`.
-
-## Methodological limits
-
-Dataset 1 is an archive-prefix sample; Datasets 2 and 3 use seeded hash selection within bounded WET windows. These are not representative random samples of Common Crawl. Text is capped at 20,000 characters. WET extraction, compact fastText, exact five-gram Jaccard deduplication (rather than MinHash/LSH), and English-oriented tokenization differ from the [original FineWeb pipeline](https://arxiv.org/abs/2406.17557).
-
-Primary quality metrics use saved original text; C4 text-cleaning effects are measured separately. Findings are descriptive, without population significance claims. Historical manifests remain unchanged; current preservation checks protect research artifacts while allowing source/documentation maintenance. ZIP archives, replay copies and assignment packaging remain local and are Git-ignored.
+Sampling is bounded and nonrepresentative. WET extraction, compact fastText, exact five-gram Jaccard deduplication instead of MinHash/LSH, and English-oriented tokenization are documented adaptations of the [FineWeb methodology](https://arxiv.org/abs/2406.17557). Findings are descriptive, without population significance claims.
