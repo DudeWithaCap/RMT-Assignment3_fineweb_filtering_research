@@ -145,9 +145,9 @@ def run_stage(stage, config, root=ROOT, overwrite=False, factory=construct_filte
         with tempfile.TemporaryDirectory(prefix=f"{stage}_work_", dir=results) as directory:
             workspace = Path(directory)
             try:
-                evaluator = factory(stage, config, assets, workspace)
+                evaluator = factory(stage, config, assets, workspace) if input_count else None
                 decision_map = None
-                if stage == "dedup":
+                if stage == "dedup" and evaluator is not None:
                     for _, document in baseline_rows(baseline, config["max_text_characters"]):
                         evaluator.add(document)
                     decision_map = evaluator.decisions()
@@ -181,7 +181,8 @@ def run_stage(stage, config, root=ROOT, overwrite=False, factory=construct_filte
                 report.update({"status": "complete", "output_count": kept, "removed_count": count - kept,
                                "removal_reasons": dict(sorted(reasons.items())),
                                "input_ids_sha256": ids_digest.hexdigest(), "output_sha256": output_digest.hexdigest(),
-                               "decisions_sha256": decision_digest.hexdigest(), "assets": evaluator.assets,
+                               "decisions_sha256": decision_digest.hexdigest(), "assets": evaluator.assets if evaluator else {},
+                               "execution": "executed" if input_count else "skipped_empty_input",
                                "python_version": platform.python_version(),
                                "dependencies": {name: importlib.metadata.version(name) for name in
                                                 ("fasttext-community", "numpy", "nltk", "tldextract")},
@@ -212,6 +213,8 @@ def main():
     parser.add_argument("--stage", choices=["all", *STAGES], default="all")
     parser.add_argument("--config", type=Path, default=ROOT / "filter_config.json")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "results")
+    parser.add_argument("--mode", choices=("independent", "sequential"), default="independent")
+    parser.add_argument("--keep-intermediate", action="store_true", help="Also export intermediate JSON datasets in sequential mode")
     args = parser.parse_args()
     try:
         config = load_config(args.config)
@@ -221,7 +224,8 @@ def main():
     from .filter_datasets import run
     try:
         run((), STAGES if args.stage == "all" else (args.stage,), args.output_dir,
-            baseline=ROOT / config["baseline"], config_path=args.config)
+            baseline=ROOT / config["baseline"], config_path=args.config,
+            mode=args.mode, keep_intermediate=args.keep_intermediate)
     except (Exception, KeyboardInterrupt) as error:
         print(f"Filtering failed: {error}", file=sys.stderr)
         return 1

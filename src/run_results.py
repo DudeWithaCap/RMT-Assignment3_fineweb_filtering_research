@@ -8,7 +8,7 @@ from pathlib import Path
 import re
 
 from .filter_assets import ROOT, sha256_file
-from .run_filters import baseline_rows
+from .run_filters import STAGES, baseline_rows
 
 LOCAL_TIME = timezone(timedelta(hours=5), "Asia/Qyzylorda")
 LABELS = {"url": "URL", "language": "Language", "quality": "Quality", "dedup": "Deduplication"}
@@ -37,15 +37,17 @@ def inspect_baseline(path, limit):
     return count, before, crawls
 
 
-def create_run(parent, name, started):
+def create_run(parent, name, started, mode=None):
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,79}", name):
         raise ValueError("Dataset names may contain only letters, digits, underscores and hyphens")
     if started.tzinfo is None:
         raise ValueError("Run timestamps must include a timezone")
+    if mode not in {None, "independent", "sequential"}:
+        raise ValueError("Unknown filtering mode")
     stamp = started.astimezone(LOCAL_TIME).strftime("%Y-%m-%d")
     clock = started.astimezone(LOCAL_TIME).strftime("%H-%M-%S")
     parent.mkdir(parents=True, exist_ok=True)
-    base = f"{stamp}_{name}_{clock}"
+    base = f"{stamp}_{name}{'_' + mode if mode else ''}_{clock}"
     for suffix in range(10000):
         directory = parent / (base if suffix == 0 else f"{base}_{suffix}")
         try:
@@ -74,7 +76,7 @@ def export_json(source, destination):
     return count
 
 
-def retention_chart(rows, destination, name):
+def retention_chart(rows, destination, name, mode="independent"):
     os.environ.setdefault("MPLCONFIGDIR", str(ROOT / "tmp/matplotlib"))
     import matplotlib
     matplotlib.use("Agg")
@@ -82,7 +84,7 @@ def retention_chart(rows, destination, name):
     from matplotlib.patches import Patch
 
     counts = [rows[0]["input"]] + [row["retained"] for row in rows]
-    removed = [0] + [row["removed"] for row in rows]
+    removed = [0] + [counts[0] - row["retained"] if mode == "sequential" else row["removed"] for row in rows]
     labels = ["Baseline"] + [LABELS[row["filter"]] for row in rows]
     with plt.rc_context({"font.family": "DejaVu Sans", "font.size": 11}):
         figure, axis = plt.subplots(figsize=(9, 5.2))
@@ -95,51 +97,84 @@ def retention_chart(rows, destination, name):
         axis.set_xticks(x, labels)
         axis.set_ylim(0, counts[0] * 1.25)
         axis.set_ylabel("Documents")
-        axis.set_title(f"{name}: documents retained by independent filters")
+        axis.set_title(f"{name}: {mode} filtering")
         axis.spines[["top", "right"]].set_visible(False)
-        axis.legend(handles=[Patch(color="#16856b", label="Retained"), Patch(color="#e6b7ad", label="Removed")],
+        removed_label = "Removed since baseline" if mode == "sequential" else "Removed"
+        axis.legend(handles=[Patch(color="#16856b", label="Retained"), Patch(color="#e6b7ad", label=removed_label)],
                     loc="upper center", bbox_to_anchor=(.5, -.10), ncol=2, frameon=False)
-        figure.text(.5, .015, "Every filter receives the original baseline. Filters are not sequential.", ha="center", fontsize=9)
+        note = ("Each stage receives the previous stage's retained documents." if mode == "sequential"
+                else "Every filter receives the original baseline. Filters are not sequential.")
+        figure.text(.5, .015, note, ha="center", fontsize=9)
         figure.tight_layout(rect=(0, .08, 1, 1))
         figure.savefig(destination, dpi=160, metadata={"Software": "FineWeb Filtering Research"})
         plt.close(figure)
 
 
-def publish(directory, name, baseline, baseline_hash, started, outputs, origin, completed=None):
+def publish(directory, name, baseline, baseline_hash, started, outputs, origin, completed=None,
+            mode="independent", keep_intermediate=False):
+    if mode not in {"independent", "sequential"}:
+        raise ValueError("Unknown filtering mode")
+    if mode == "sequential" and tuple(outputs) != STAGES:
+        raise ValueError("Sequential output must include all four filters in the configured order")
     datasets = directory / "datasets"
-    datasets.mkdir()
+    if mode == "independent" or keep_intermediate:
+        datasets.mkdir()
     rows, sources = [], {}
+    expected_hash, expected_count, baseline_count = baseline_hash, None, None
     for stage, files in outputs.items():
         report = json.loads(files["summary"].read_text(encoding="utf-8"))
-        if (report["status"] != "complete" or report["baseline_sha256"] != baseline_hash
-                or report["baseline_sha256_after"] != baseline_hash
+        if (report["status"] != "complete" or report["baseline_sha256"] != expected_hash
+                or report["baseline_sha256_after"] != expected_hash
                 or sha256_file(files["dataset"]) != report["output_sha256"]):
             raise ValueError(f"Source verification failed for {stage}")
-        destination = datasets / f"{stage}.json"
-        count = export_json(files["dataset"], destination)
-        if count != report["output_count"] or report["input_count"] != count + report["removed_count"]:
+        input_count = report["input_count"]
+        if baseline_count is None:
+            baseline_count = input_count
+            expected_count = input_count
+            if baseline_count <= 0:
+                raise ValueError("The original baseline must be nonempty")
+        count = sum(1 for _ in baseline_rows(files["dataset"], 20000))
+        if (count != report["output_count"] or input_count != expected_count
+                or input_count != count + report["removed_count"] or count > input_count):
             raise ValueError(f"Document counts do not reconcile for {stage}")
-        rows.append({"filter": stage, "input": report["input_count"], "retained": count,
-                     "removed": report["removed_count"], "retained_percent": 100 * count / report["input_count"],
-                     "removed_percent": 100 * report["removed_count"] / report["input_count"]})
+        destination = datasets / f"{stage}.json"
+        exported = mode == "independent" or keep_intermediate
+        if exported:
+            export_json(files["dataset"], destination)
+        rows.append({"filter": stage, "input": input_count, "retained": count,
+                     "removed": report["removed_count"], "retained_percent": 100 * count / input_count if input_count else None,
+                     "removed_percent": 100 * report["removed_count"] / input_count if input_count else None,
+                     "retained_percent_of_baseline": 100 * count / baseline_count,
+                     "removed_since_baseline": baseline_count - count,
+                     "execution": report.get("execution", "executed")})
         sources[stage] = {"source_summary": str(files["summary"].resolve()),
                           "source_jsonl": str(files["dataset"].resolve()), "source_jsonl_sha256": report["output_sha256"],
-                          "json": f"datasets/{stage}.json", "json_sha256": sha256_file(destination),
+                          "input_sha256": expected_hash,
+                          "json": f"datasets/{stage}.json" if exported else None,
+                          "json_sha256": sha256_file(destination) if exported else None,
                           "removal_reasons": report["removal_reasons"]}
-    if not rows or len({row["input"] for row in rows}) != 1:
-        raise ValueError("All conditions must use the same nonempty baseline")
+        if mode == "sequential":
+            expected_hash, expected_count = report["output_sha256"], count
+    if not rows:
+        raise ValueError("No filter outputs were provided")
     if sha256_file(baseline) != baseline_hash:
         raise RuntimeError("Baseline changed; results are incomplete")
     with (directory / "retention.csv").open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
-    retention_chart(rows, directory / "retention.png", name)
+    retention_chart(rows, directory / "retention.png", name, mode=mode)
     summary = {"status": "complete", "dataset": name, "started_at": started.astimezone(LOCAL_TIME).isoformat(),
                "completed_at": (completed or now()).astimezone(LOCAL_TIME).isoformat(),
                "packaged_at": now().isoformat(), "timezone": "Asia/Qyzylorda (UTC+05:00)", "origin": origin,
-               "filter_mode": "independent", "baseline": str(baseline.resolve()), "baseline_sha256": baseline_hash,
-               "baseline_documents": rows[0]["input"], "filters": rows, "artifacts": sources,
+               "filter_mode": mode, "filter_order": list(outputs),
+               "baseline": str(baseline.resolve()), "baseline_sha256": baseline_hash,
+               "baseline_documents": baseline_count, "filters": rows, "artifacts": sources,
                "quality_text": "Retained original text; C4 working-text transformations are not exported"}
+    if mode == "sequential":
+        final_source = next(reversed(outputs.values()))["dataset"]
+        summary["final_documents"] = export_json(final_source, directory / "cleaned.json")
+        summary["final_json"] = "cleaned.json"
+        summary["final_json_sha256"] = sha256_file(directory / "cleaned.json")
     write_json(directory / "summary.json", summary)
     return summary
