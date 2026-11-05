@@ -46,6 +46,17 @@ def load_config(path):
     number(config["dedup"]["ngram_size"], "ngram_size", low=1, high=20, integer=True)
     number(config["dedup"]["similarity_threshold"], "similarity_threshold", low=0.000001, high=1)
     number(config["dedup"]["max_documents"], "max_documents", low=1, integer=True)
+    method = config["dedup"].get("method", "exact")
+    if method not in ("exact", "minhash_lsh"):
+        raise ValueError("dedup method must be exact or minhash_lsh")
+    if method == "minhash_lsh":
+        for key, high in (("num_bands", 512), ("rows_per_band", 64), ("max_bucket_pairs", 100000)):
+            number(config["dedup"][key], key, low=1, high=high, integer=True)
+        number(config["dedup"]["seed"], "seed", integer=True)
+        if config["dedup"].get("workers") is not None:
+            number(config["dedup"]["workers"], "workers", low=1, high=256, integer=True)
+    elif config["dedup"]["max_documents"] > 5000:
+        raise ValueError("Exact dedup is intended for small samples; use method minhash_lsh above 5000 documents")
     quality = config["quality"]
     integer_keys = ("min_doc_words", "max_doc_words", "min_stop_words", "c4_min_sentences",
                     "c4_min_words_per_line", "c4_max_word_length", "short_line_length")
@@ -101,6 +112,11 @@ def construct_filter(stage, config, assets, workspace):
     if stage == "quality":
         from .quality_filter import QualityFilter
         return QualityFilter(config[stage], tokenizer)
+    if config[stage].get("method", "exact") == "minhash_lsh":
+        from functools import partial
+        from .dedup_lsh import LSHDedupFilter
+        from .filter_tokenizer import EnglishTokenizer as factory
+        return LSHDedupFilter(config[stage], partial(factory, assets), tokenizer.asset_record)
     from .dedup_filter import DedupFilter
     return DedupFilter(config[stage], tokenizer, workspace)
 
@@ -147,7 +163,10 @@ def run_stage(stage, config, root=ROOT, overwrite=False, factory=construct_filte
             try:
                 evaluator = factory(stage, config, assets, workspace) if input_count else None
                 decision_map = None
-                if stage == "dedup" and evaluator is not None:
+                if stage == "dedup" and hasattr(evaluator, "decide_stream"):
+                    decision_map = evaluator.decide_stream(
+                        lambda: baseline_rows(baseline, config["max_text_characters"]))
+                elif stage == "dedup" and evaluator is not None:
                     for _, document in baseline_rows(baseline, config["max_text_characters"]):
                         evaluator.add(document)
                     decision_map = evaluator.decisions()

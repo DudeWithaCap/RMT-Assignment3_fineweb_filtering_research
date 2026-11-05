@@ -93,6 +93,30 @@ Combined `*_all_datasets.csv` tables sit at the top level. Before computing anyt
 - Deduplication judges the whole input, so its overlap reflects which copy it kept.
 - Intervals resample documents within one bounded sample; they are not population claims about Common Crawl.
 
+## One-million-document experiment
+
+The 1M sample repeats the Dataset 1 procedure at scale: CC-MAIN-2025-30, seed 42, WET files in SHA256(seed:path) order, consecutive eligible records. Its first 1,000 lines equal `baseline.jsonl`, so the 1K and 1M results come from nested samples.
+
+```powershell
+# Resumable download (about 43 WET files); rerun the same command after an interruption
+.\.venv\Scripts\python.exe -m src.datasets.prepare_large --config config_1m.json --output-name baseline_1m.jsonl
+# Independent filtering with the scalable dedup configuration
+.\.venv\Scripts\python.exe -m src.filter_datasets --input data/processed/baseline_1m.jsonl --dataset-name CC_2025_30_1M --config filter_config_1m.json --mode independent
+# Overlap analysis of that run
+.\.venv\Scripts\python.exe -m src.overlap --runs results/<the new CC_2025_30_1M independent folder>
+```
+
+Downloaded WET files are cached as verified parts under `data/raw/baseline_1m/parts/`. Unlike the original script, a record that fails document validation is skipped and counted (with example URLs in the metadata) rather than stopping the download.
+
+`filter_config_1m.json` matches `filter_config.json` except for deduplication. Exact pairwise comparison does not scale past a few thousand documents (it is now limited to 5,000), so the 1M run uses `method: minhash_lsh` ([src/dedup_lsh.py](src/dedup_lsh.py)):
+
+- Same normalization, tokenizer and word 5-grams; normalized-exact matches are joined directly.
+- MinHash (20 bands × 5 rows, seeded splitmix64 over 64-bit gram hashes) only proposes candidate pairs.
+- Every candidate is checked with exact Jaccard ≥ 0.80, and connected components keep their earliest row, as before.
+- A pair at Jaccard 0.80 is missed with probability about 0.03%. Very large buckets are checked as a star plus a chain.
+
+`python -m validation.dedup_lsh_agreement` compares both methods on the three 1K baselines. It found identical decisions for all 3,000 documents.
+
 ## Code and inputs
 
 - `src/prepare_dataset.py`: streaming acquisition for Dataset 1.

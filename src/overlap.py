@@ -253,19 +253,46 @@ def profile_groups(pattern):
     return groups
 
 
-def removed_profiles(loaded, sentence_lengths):
+_MEASURE = {}
+
+
+def _init_measure(assets_directory):
+    from .metrics.calculations import MeasurementTokenizer
+    _MEASURE["lengths"] = MeasurementTokenizer(Path(assets_directory)).sentence_lengths
+
+
+def _measure(item):
+    identity, domain, characters, text = item
+    return identity, domain, characters, _MEASURE["lengths"](text)
+
+
+def measured_rows(baseline, sentence_lengths=None, assets_directory=None, workers=1):
+    """Yield (id, domain, characters, sentence lengths) in baseline order."""
+    items = ((d["document_id"], d["domain"], d["character_count"], d["text"]) for _, d in baseline_rows(baseline, 20000))
+    if sentence_lengths is not None:
+        yield from ((i, dom, c, sentence_lengths(t)) for i, dom, c, t in items)
+    elif workers <= 1:
+        _init_measure(assets_directory)
+        yield from map(_measure, items)
+    else:
+        from multiprocessing import get_context
+        with get_context("spawn").Pool(workers, initializer=_init_measure, initargs=(str(assets_directory),)) as pool:
+            yield from pool.imap(_measure, items, chunksize=256)
+
+
+def removed_profiles(loaded, sentence_lengths=None, workers=1):
     baseline = loaded["baseline"]
     before = sha256_file(baseline)
     if before != loaded["baseline_sha256"]:
         raise ValueError(f"{loaded['dataset']}: local baseline differs from the run's recorded baseline")
     profiles = {}
     index = -1
-    for index, (_, document) in enumerate(baseline_rows(baseline, 20000)):
-        if index >= len(loaded["ids"]) or document["document_id"] != loaded["ids"][index]:
+    rows = measured_rows(baseline, sentence_lengths, loaded["assets_directory"], workers)
+    for index, (identity, domain, characters, lengths) in enumerate(rows):
+        if index >= len(loaded["ids"]) or identity != loaded["ids"][index]:
             raise ValueError(f"{loaded['dataset']}: baseline order differs from decision logs at row {index + 1}")
-        lengths = sentence_lengths(document["text"])
         for group in profile_groups(loaded["patterns"][index]):
-            profiles.setdefault(group, Profile()).add(document["domain"], lengths, document["character_count"])
+            profiles.setdefault(group, Profile()).add(domain, lengths, characters)
     if index + 1 != len(loaded["ids"]) or sha256_file(baseline) != before:
         raise RuntimeError(f"{loaded['dataset']}: baseline changed or is incomplete")
     base = profiles["baseline"]
@@ -426,12 +453,8 @@ def write_csv(path, rows):
         writer.writerows(rows)
 
 
-def default_sentence_lengths(assets_directory):
-    from .metrics.calculations import MeasurementTokenizer
-    return MeasurementTokenizer(Path(assets_directory)).sentence_lengths
-
-
-def analyze(runs, output=ROOT / "results", iterations=2000, seed=42, profiles=True, sentence_lengths=None):
+def analyze(runs, output=ROOT / "results", iterations=2000, seed=42, profiles=True, sentence_lengths=None,
+            workers=None):
     """Analyze one or more independent runs into a single new dated folder."""
     output = Path(output).resolve()
     loaded = [load_run(run) for run in runs]
@@ -454,8 +477,10 @@ def analyze(runs, output=ROOT / "results", iterations=2000, seed=42, profiles=Tr
         heatmap_figure(summary, name, target / "overlap_heatmaps.png")
         upset_figure(summary, name, target / "removal_patterns.png")
         if profiles:
-            measure = sentence_lengths or default_sentence_lengths(entry["assets_directory"])
-            rows, histograms = removed_profiles(entry, measure)
+            # Parallel tokenization only pays off for large baselines.
+            count = len(entry["ids"])
+            chosen = workers or (max(1, min(16, (os.cpu_count() or 2) - 2)) if count > 20000 else 1)
+            rows, histograms = removed_profiles(entry, sentence_lengths, chosen)
             summary["profiles"] = rows
             write_csv(target / "profiles.csv", rows)
             write_json(target / "sentence_histograms.json", histograms)
@@ -506,11 +531,12 @@ def main(argv=None):
     parser.add_argument("--no-profiles", action="store_true",
                         help="Skip removed-set text profiles (no tokenizer or baseline text needed)")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "results")
+    parser.add_argument("--workers", type=int, help="Tokenizer processes for profiles (default: automatic)")
     args = parser.parse_args(argv)
     runs = args.runs or latest_independent_runs(args.output_dir)
     if not runs:
         parser.error("No complete independent runs found; run independent filtering first")
-    analyze(runs, args.output_dir, args.iterations, args.seed, profiles=not args.no_profiles)
+    analyze(runs, args.output_dir, args.iterations, args.seed, profiles=not args.no_profiles, workers=args.workers)
     return 0
 
 
