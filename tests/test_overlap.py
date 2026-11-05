@@ -78,6 +78,15 @@ class OverlapTests(unittest.TestCase):
         self.assertGreaterEqual(pair["jaccard_ci95_high"], pair["jaccard"])
         self.assertIsNone(overlap.overlap_summary(patterns, iterations=0)["pairs"][0]["jaccard_ci95_low"])
 
+    def test_rare_filter_keeps_interval_when_few_resamples_are_undefined(self):
+        # 7 of 1000 removed by URL: ~0.09% of resamples contain none of them.
+        patterns = [1] * 7 + [4] * 500 + [5] * 3 + [0] * 490
+        pair = overlap.overlap_summary(patterns, iterations=4000, seed=3)["pairs"][1]
+        self.assertEqual((pair["filter_a"], pair["filter_b"]), ("url", "quality"))
+        self.assertIsNotNone(pair["phi_ci95_low"])
+        self.assertLess(pair["bootstrap_min_defined_share"], 1)
+        self.assertGreaterEqual(pair["bootstrap_min_defined_share"], .99)
+
     def test_degenerate_pair_has_no_undefined_numbers(self):
         summary = overlap.overlap_summary([0, 0, 0], iterations=50)
         for row in summary["pairs"]:

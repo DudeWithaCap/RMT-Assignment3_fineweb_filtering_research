@@ -26,6 +26,7 @@ COLORS = {"url": "#2a78d6", "language": "#eb6834", "quality": "#1baf7a", "dedup"
 PATTERNS = range(1 << len(STAGES))
 PAIRS = tuple(combinations(STAGES, 2))
 METRICS = ("jaccard", "containment_a_in_b", "containment_b_in_a", "lift", "phi")
+MIN_DEFINED_SHARE = .99
 
 
 # ---------------------------------------------------------------------------
@@ -139,9 +140,13 @@ def bootstrap(pattern_counts, iterations, seed):
                       "phi": (n11 * n00 - n10 * n01) / np.sqrt(
                           size_a.astype(float) * size_b * (total - size_a) * (total - size_b))}
         for metric, array in values.items():
+            # A resample can leave a rare filter with no removals, making the metric undefined.
+            # Use the defined resamples, but only when they are nearly all of them.
             finite = array[np.isfinite(array)]
-            intervals[(a, b, metric)] = ((float(np.percentile(finite, 2.5)), float(np.percentile(finite, 97.5)))
-                                         if len(finite) == iterations else (None, None))
+            share = len(finite) / iterations
+            interval = ((float(np.percentile(finite, 2.5)), float(np.percentile(finite, 97.5)))
+                        if share >= MIN_DEFINED_SHARE else (None, None))
+            intervals[(a, b, metric)] = (*interval, share)
     return intervals
 
 
@@ -163,9 +168,12 @@ def overlap_summary(patterns, iterations=2000, seed=42):
     pairs = []
     for a, b in PAIRS:
         row = pair_statistics(pattern_counts, a, b)
+        shares = []
         for metric in METRICS:
-            low, high = intervals.get((a, b, metric), (None, None))
+            low, high, share = intervals.get((a, b, metric), (None, None, None))
             row[metric + "_ci95_low"], row[metric + "_ci95_high"] = low, high
+            shares.append(share)
+        row["bootstrap_min_defined_share"] = None if None in shares else min(shares)
         pairs.append(row)
     per_filter = []
     for stage in STAGES:
@@ -185,7 +193,9 @@ def overlap_summary(patterns, iterations=2000, seed=42):
             "removed_by_any_filter": total - pattern_counts.get(0, 0),
             "per_filter": per_filter, "pairs": pairs,
             "bootstrap": {"iterations": iterations, "seed": seed, "method":
-                          "percentile; documents resampled with replacement (multinomial over removal patterns)"}}
+                          "percentile; documents resampled with replacement (multinomial over removal patterns); "
+                          "intervals use resamples where the metric is defined and are omitted when fewer than "
+                          f"{MIN_DEFINED_SHARE:.0%} are"}}
 
 
 # ---------------------------------------------------------------------------
