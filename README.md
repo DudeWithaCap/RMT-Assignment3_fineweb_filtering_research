@@ -65,6 +65,34 @@ Unit tests use small temporary fixtures and do not create permanent experiment f
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
+## Cross-filter overlap analysis
+
+Independent runs record every filter's keep/remove decision for every baseline document. The overlap analysis reads those decision logs (no filter is re-run) and measures how far the four filters remove the **same** documents:
+
+```powershell
+# Newest complete independent run for each dataset
+.\.venv\Scripts\python.exe -m src.overlap --latest
+# Specific runs; --no-profiles skips the text measurements (no tokenizer assets needed)
+.\.venv\Scripts\python.exe -m src.overlap --runs results/<independent-run-1> results/<independent-run-2> --no-profiles
+```
+
+It is also menu option `3`. Each analysis creates `results/YYYY-MM-DD_cross_filter_overlap_HH-MM-SS/` with one subfolder per dataset:
+
+| File | Contents |
+| --- | --- |
+| `pairs.csv` | For each filter pair: intersection/union counts, Jaccard, containment both ways, lift over independence, phi, and bootstrap 95% intervals |
+| `per_filter.csv` | Removals per filter, removals no other filter makes, and the share also removed elsewhere |
+| `patterns.csv`, `removal_patterns.png` | All 16 keep/remove combinations (UpSet-style), including documents every filter keeps |
+| `overlap_heatmaps.png` | Jaccard, containment and phi matrices |
+| `profiles.csv`, `removed_sentence_cdf.png` | Structural profile of each filter's removed, exclusively removed and retained sets: tokens, sentence-length statistics, unique domains, domain entropy, Wasserstein distance to baseline |
+| `overlap.json` | Everything above plus source-run paths and verified hashes |
+
+Combined `*_all_datasets.csv` tables sit at the top level. Before computing anything, the analysis verifies every decision log against its recorded SHA256. It also checks that all four filters judged the same baseline with identical document order, and that the local baseline still matches its recorded hash. Interpretation notes:
+
+- Containment and Jaccard rise mechanically with a filter's removal rate (a filter that removes 95% "contains" most other removals by chance). Use lift and phi for chance-corrected association.
+- Deduplication judges the whole input, so its overlap reflects which copy it kept.
+- Intervals resample documents within one bounded sample; they are not population claims about Common Crawl.
+
 ## Code and inputs
 
 - `src/prepare_dataset.py`: streaming acquisition for Dataset 1.

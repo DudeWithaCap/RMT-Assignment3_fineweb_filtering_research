@@ -18,7 +18,7 @@ def choose(prompt, options, read, write):
         write("Invalid choice. Enter one of the numbers shown above.")
 
 
-def main(input_fn=None, output_fn=None, runner=None):
+def main(input_fn=None, output_fn=None, runner=None, overlap_runner=None):
     read, write, execute = input_fn or input, output_fn or print, runner or run
     write("FineWeb Filtering Research")
     write("Every run saves a separate dated results folder.")
@@ -27,9 +27,25 @@ def main(input_fn=None, output_fn=None, runner=None):
             selected_mode = choose("Choose filtering mode", {
                 "1": "Independent (test each filter separately on the same dataset)",
                 "2": "Sequential (run one dataset through all four filters in order)",
+                "3": "Cross-filter overlap analysis (latest independent run per dataset)",
                 "0": "Exit"}, read, write)
             if selected_mode == "0":
                 return 0
+            if selected_mode == "3":
+                from .overlap import analyze, latest_independent_runs
+                runs = latest_independent_runs(ROOT / "results")
+                if not runs:
+                    write("No complete independent runs found. Run Independent filtering first.")
+                    continue
+                write("Analyzing: " + ", ".join(run.name for run in runs))
+                try:
+                    directory = (overlap_runner or analyze)(runs, ROOT / "results")
+                except Exception as error:
+                    write(f"Analysis failed: {error}")
+                    write("Use 'python -m src.overlap --latest --no-profiles' if tokenizer assets are missing.")
+                    continue
+                write(f"\nCompleted: {directory}")
+                continue
             mode = "independent" if selected_mode == "1" else "sequential"
             selected_dataset = choose("Choose input dataset", {
                 "1": "CC-MAIN-2025-30", "2": "CC-MAIN-2025-18", "3": "CC-MAIN-2025-47",

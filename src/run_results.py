@@ -42,7 +42,7 @@ def create_run(parent, name, started, mode=None):
         raise ValueError("Dataset names may contain only letters, digits, underscores and hyphens")
     if started.tzinfo is None:
         raise ValueError("Run timestamps must include a timezone")
-    if mode not in {None, "independent", "sequential"}:
+    if mode not in {None, "independent", "sequential", "overlap"}:
         raise ValueError("Unknown filtering mode")
     stamp = started.astimezone(LOCAL_TIME).strftime("%Y-%m-%d")
     clock = started.astimezone(LOCAL_TIME).strftime("%H-%M-%S")
